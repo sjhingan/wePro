@@ -48,8 +48,13 @@ public class ProjectController {
         projectService.updateProject(project);
     }
 
-    @GetMapping("/get/{uid}")
-    public List<Project> getAllProjectsByOwner(@PathVariable int uid, @PathVariable String status){
-        return projectService.getAllProjectsByStatusIdAndOwner(uid, ProjectStatus.valueOf(status.toUpperCase()).value());
+    @GetMapping("/get/owner/{uid}")
+    public List<Project> getAllProjectsByOwner(@PathVariable(name = "uid") int id){
+        return projectService.getAllProjectsByOwner(id);
+    }
+
+    @PutMapping("/update/{id}/{status}")
+    public void updateProjectStatus(@PathVariable int id, @PathVariable String status){
+        projectService.updateProjectStatus(id, ProjectStatus.valueOf(status.toUpperCase()).value());
     }
 }

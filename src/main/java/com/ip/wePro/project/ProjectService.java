@@ -22,14 +22,22 @@ public class ProjectService {
     }
 
     public void addProject(Project project) {
+        if(project.getAssessmentRequired().equals("Yes")){
+            project.setStatusId(ProjectStatus.SAVED.value());
+        }else{
+            project.setStatusId(ProjectStatus.OPEN.value());
+        }
         project = projectRepository.save(project);
         int projectId = project.getId();
+        System.out.println(projectId);
         List<ProjectSkills> projectSkillsList = new LinkedList<>();
-        Iterator iterator = project.getSkills().iterator();
-        while(iterator.hasNext()){
-            projectSkillsList.add(new ProjectSkills(projectId, iterator.next().toString()));
+        if(project.getSkills() != null && project.getSkills().size() > 0){
+            Iterator iterator = project.getSkills().iterator();
+            while(iterator.hasNext()){
+                projectSkillsList.add(new ProjectSkills(projectId, iterator.next().toString()));
+            }
+            projectSkillsRepository.saveAll(projectSkillsList);
         }
-        projectSkillsRepository.saveAll(projectSkillsList);
     }
 
     public Project getProject(int id) {
@@ -52,4 +60,11 @@ public class ProjectService {
         return projectRepository.findAllByStatusId(status);
     }
 
+    public List<Project> getAllProjectsByOwner(int ownerId){
+        return projectRepository.findAllByOwner(ownerId);
+    }
+
+    public void updateProjectStatus(int id, int status){
+        projectRepository.updateProjectStatus(id, status);
+    }
 }

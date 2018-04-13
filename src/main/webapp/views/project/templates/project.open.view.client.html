@@ -1,13 +1,12 @@
-<h1>Welcome to Project!!!</h1>
 <div ng-repeat="project in model.getOpenProjectsList">
     <div class="card mb-3 col-sm-10">
         <div class="card-header ">
             <a >{{project.name}}</a>
         </div>
         <div class="card-body">
-            <h5 class="card-title">Special title treatment</h5>
+            <!--<h5 class="card-title">Special title treatment</h5>-->
             <p class="card-text">{{project.description}}</p>
-            <a href="#" class="btn btn-primary">Go somewhere</a>
+            <button type="button" class="btn btn-outline-primary" ng-click="model.applyJob(project)">Apply</button>
         </div>
         <div class="card-footer text-muted">
             Due Date: {{project.dueDate.split('T')[0]}}

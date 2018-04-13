@@ -1,19 +1,21 @@
 <div>
-    <button type="button" class="btn btn-outline-primary" data-toggle="modal" data-target="#exampleModalCenter">Launch modal</button>
+    <button type="button" class="btn btn-outline-primary" data-toggle="modal" data-target="#addProject">Launch modal</button>
     <!--<button type="button" class="btn btn-outline-primary pull-right" ng-click="model.createProject()">-->
         <!--Add Project-->
     <!--</button>-->
 </div>
 
-<div ng-repeat="project in model.getOpenProjectsList">
+<div ng-repeat="project in model.getOwnerProjectsList">
     <div class="card mb-3 col-sm-10">
         <div class="card-header">
-            <a >{{project.name}}</a>
+            <a href="">{{project.name}}</a>
         </div>
         <div class="card-body">
-            <h5 class="card-title">Special title treatment</h5>
             <p class="card-text">{{project.description}}</p>
-            <a href="#" class="btn btn-primary">Go somewhere</a>
+            <button type="button" ng-show='"{{project.assessmentId}}" != 0 ? true : false' class="btn btn-outline-info">Update Assessment</button>
+            <button type="button" ng-show='"{{project.assessmentRequired}}" == "Yes" ? true : false' class="btn btn-outline-warning">Create Assessment</button>
+            <button type="button" ng-click="model.editProject(project)" class="btn btn-outline-secondary">Edit</button>
+            <button type="button" ng-click="model.deleteProjectPrompt(project)" class="btn btn-outline-danger">Delete</button>
         </div>
         <div class="card-footer text-muted">
             Due Date: {{project.dueDate.split('T')[0]}}
@@ -24,57 +26,155 @@
 </div>
 
 
-<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+<div class="modal fade" id="addProject" tabindex="-1" role="dialog" aria-labelledby="addProjectTitle" aria-hidden="true" >
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLongTitle">Add Project</h5>
+                <h5 class="modal-title" id="addProjectTitle">Add Project</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
             <div class="modal-body">
                 <div class="container-fluid">
-                    <form>
+                    <form data-toggle="validator" id="addProjectForm" ng-submit="model.addProject(model.project)">
                         <div class="form-row">
-                                <label for="validationDefault01">Project name</label>
-                                <input type="text" class="form-control" id="validationDefault01" placeholder="Project name" required>
+                            <label for="projectName">Project name</label>
+                            <input type="text" class="form-control" id="projectName" ng-model="model.project.name" placeholder="Project name" required>
                         </div>
                         <div class="form-row">
-                                <label for="validationDefault02">Project Description</label>
-                                <textarea class="form-control" id="validationDefault02" rows="3"></textarea>
+                            <label for="projectDescription">Project Description</label>
+                            <textarea class="form-control" id="projectDescription" rows="5" ng-model="model.project.description"></textarea>
                         </div>
                         <div class="form-row">
-                                <label for="validationDefault03">Due Date</label>
-                                <input type="date" class="form-control" id="validationDefault03"></input>
+                            <label for="projectDueDate">Due Date</label>
+                            <input type="date" class="form-control" id="projectDueDate" ng-model="model.project.dueDate"></input>
                         </div>
                         <div class="form-row">
-                                <label for="validationDefault04">Pay/hr</label>
-                                <input type="text" class="form-control" id="validationDefault04" placeholder="Payment" required>
+                            <label for="projectPay">Pay/hr</label>
+                            <input type="text" class="form-control" id="projectPay" placeholder="Payment" ng-model="model.project.pay" required>
                         </div>
                         <div class="form-row">
-                                <label for="validationDefault05">Number of positions</label>
-                                <input type="text" class="form-control" id="validationDefault05" placeholder="No. of positions" required>
+                            <label for="projectNoOfPositions">Number of positions</label>
+                            <input type="text" class="form-control" id="projectNoOfPositions" placeholder="No. of positions" ng-model="model.project.positions" required>
                         </div>
                         <div class="form-row">
-                                <label >Assessment Required</label>
-                                <div class="form-group">
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1">
-                                        <label class="form-check-label" for="inlineRadio1">Yes</label>
-                                    </div>
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2">
-                                        <label class="form-check-label" for="inlineRadio2">No</label>
-                                    </div>
+                            <label for="projectDuration">Project Duration</label>
+                            <input type="text" class="form-control" id="projectDuration" placeholder="Project Duration" ng-model="model.project.duration">
+                        </div>
+                        <div class="form-row">
+                            <label for="projectSkills">Example multiple select</label>
+                            <select multiple class="form-control" id="projectSkills" ng-model="model.project.skills">
+                                <option ng-repeat="option in model.allSkills" value="{{option.id}}">{{option.name}}</option>
+                            </select>
+                        </div>
+                        <div class="form-row">
+                            <label >Assessment Required</label>
+                            <div class="form-group">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="assessmentOptions" id="YesOption" value="Yes" ng-model="model.project.assessmentRequired">
+                                    <label class="form-check-label" for="YesOption">Yes</label>
                                 </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="assessmentOptions" id="NoOption" value="No" ng-model="model.project.assessmentRequired">
+                                    <label class="form-check-label" for="NoOption">No</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            <button type="submit" class="btn btn-primary">Save</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="editProject" tabindex="-1" role="dialog" aria-labelledby="editProjectTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="editProjectTitle">Edit Project</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="container-fluid">
+                    <form data-toggle="validator">
+                        <div class="form-row">
+                            <label for="projectName">Project name</label>
+                            <input type="text" class="form-control" id="projectNameEdit" ng-model="model.editingProject.name" placeholder="Project name" required>
+                        </div>
+                        <div class="form-row">
+                            <label for="projectDescription">Project Description</label>
+                            <textarea class="form-control" id="projectDescriptionEdit" rows="5" ng-model="model.editingProject.description"></textarea>
+                        </div>
+                        <div class="form-row">
+                            <label for="projectDueDate">Due Date</label>
+                            <input type="date" class="form-control" id="projectDueDateEdit" ng-model="model.editingProject.dueDate"></input>
+                        </div>
+                        <div class="form-row">
+                            <label for="projectPay">Pay/hr</label>
+                            <input type="text" class="form-control" id="projectPayEdit" placeholder="Payment" ng-model="model.editingProject.pay" required>
+                        </div>
+                        <div class="form-row">
+                            <label for="projectNoOfPositions">Number of positions</label>
+                            <input type="text" class="form-control" id="projectNoOfPositionsEdit" placeholder="No. of positions" ng-model="model.editingProject.positions" required>
+                        </div>
+                        <div class="form-row">
+                            <label for="projectDuration">Project Duration</label>
+                            <input type="text" class="form-control" id="projectDurationEdit" placeholder="Project Duration" ng-model="model.editingProject.duration">
+                        </div>
+                        <div class="form-row">
+                            <label for="projectSkillsEdit">Example multiple select</label>
+                            <select multiple class="form-control" id="projectSkillsEdit" ng-model="model.editingProject.skills">
+                                <option ng-repeat="option in model.allSkills" value="{{option.id}}">{{option.name}}</option>
+                            </select>
+                        </div>
+                        <div class="form-row">
+                            <label >Assessment Required</label>
+                            <div class="form-group">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="assessmentOptions" id="YesOptionEdit" value="Yes" ng-model="model.editingProject.assessmentRequired" ng-checked='"{{model.editingProject.assessmentRequired}}" == "Yes" ? true : false'>
+                                    <label class="form-check-label" for="YesOption">Yes</label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="assessmentOptions" id="NoOptionEdit" value="No" ng-model="model.editingProject.assessmentRequired" ng-checked='"{{model.editingProject.assessmentRequired}}" == "Yes" ? true : false'>
+                                    <label class="form-check-label" for="NoOption">No</label>
+                                </div>
+                            </div>
                         </div>
                     </form>
                 </div>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Save changes</button>
+                <button type="button" class="btn btn-primary" ng-click="model.updateProject(model.editingProject)">Save</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="modal fade" id="deleteProject" tabindex="-1" role="dialog" aria-labelledby="deleteProjectTitle" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="deleteProjectTitle">Delete Project</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p>Are you sure to delete <strong>{{model.deletingProject.name}}</strong> project?</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                <button type="button" class="btn btn-danger" ng-click="model.deleteProject(model.deletingProject)">Confirm</button>
             </div>
         </div>
     </div>

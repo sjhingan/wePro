@@ -23,6 +23,8 @@ public class Project {
     private int assessmentId;
     private int positions;
     private int pay;
+    @Column(name = "assessment_required")
+    private String assessmentRequired;
     @Transient
     private Set<String> skills;
 
@@ -30,7 +32,7 @@ public class Project {
 
     }
 
-    public Project(String name, String description, int statusId, int duration, Date dueDate, int owner, int assessmentId, int positions, int pay) {
+    public Project(String name, String description, int statusId, int duration, Date dueDate, int owner, int assessmentId, int positions, int pay, String assessmentRequired) {
         this.name = name;
         this.description = description;
         this.statusId = statusId;
@@ -40,6 +42,7 @@ public class Project {
         this.assessmentId = assessmentId;
         this.positions = positions;
         this.pay = pay;
+        this.assessmentRequired = assessmentRequired;
     }
 
     public Date getDueDate() {
@@ -128,5 +131,13 @@ public class Project {
 
     public void setSkills(Set<String> skills) {
         this.skills = skills;
+    }
+
+    public String getAssessmentRequired() {
+        return assessmentRequired;
+    }
+
+    public void setAssessmentRequired(String assessmentRequired) {
+        this.assessmentRequired = assessmentRequired;
     }
 }
