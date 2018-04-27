@@ -1,6 +1,7 @@
 package com.ip.wePro.project;
 
 
+import com.ip.wePro.assessment_status.Assessment_statusRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -13,7 +14,13 @@ public class ProjectService {
     @Autowired
     ProjectRepository projectRepository;
 
-    public Page<Project> getAllProjects(Pageable pageable){
+    @Autowired
+    ProjectSkillsRepository projectSkillsRepository;
+
+    @Autowired
+    Assessment_statusRepository assessmentStatusRepository;
+
+    public Page<Project> getAllProjects(Pageable pageable) {
         return projectRepository.findAll(pageable);
     }
 
@@ -52,5 +59,10 @@ public class ProjectService {
 
     public void updateProjectStatus(int id, int status){
         projectRepository.updateProjectStatus(id, status);
+    }
+
+    public List<Project> getAllProjectsByProjectID(int id) {
+
+        return projectRepository.findAllByProjectID(id);
     }
 }

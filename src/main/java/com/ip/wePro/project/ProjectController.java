@@ -58,4 +58,11 @@ public class ProjectController {
     public void updateProjectStatus(@PathVariable int id, @PathVariable String status){
         projectService.updateProjectStatus(id, ProjectStatus.valueOf(status.toUpperCase()).value());
     }
+
+    @GetMapping("/get/byprojectid/{id}")
+    public List<Project> getAllProjectsByProjectID(@PathVariable int id){
+        return projectService.getAllProjectsByProjectID(id);
+    }
+
+
 }

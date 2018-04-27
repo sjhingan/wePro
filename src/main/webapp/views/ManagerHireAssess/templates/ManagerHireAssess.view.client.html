@@ -1,0 +1,72 @@
+<h1> Creating Hiring Assessment </h1>
+<br/>
+<form name="myForm" novalidate
+	<div class="row">
+		<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1"></div>
+		
+		<div class="col-lg-10 col-md-10 col-sm-10 col-xs-10">
+		
+			<div  ng-app="weProApp" ng-controller="ManagerHireAssess as ctrl">
+			
+			<div ng-repeat="form in ctrl.displayedForms track by $index">
+      			<ng-include src="form"></ng-include>
+    		</div>
+			
+			<script type="text/ng-template" id="form1.tpl.html">
+			
+			<label>Enter the Question:</label><br/>
+			<textarea ng-model="question"> </textarea><br/>
+			<br/>
+			
+			<input type="radio" value="option1" name="answerGroup" required ng-model="$parent.selectedAnswer">
+			<label>Enter the Option 1:</label>
+			<input type="text" ng-model="option1"><br/>
+			<br/>
+			
+			<input type="radio"  name="answerGroup" required ng-model="$parent.selectedAnswer" value="option2">
+			<label>Enter the Option 2:</label>
+			<input type="text" ng-model="option2"><br/>
+			<br/>
+			
+			Click to add another option:
+			<input type="checkbox" ng-model="myVar1" ng-init="myVar1 = false"><br/>
+			<div ng-if="myVar1 == true">
+				<input type="radio"  name="answerGroup" required ng-model="$parent.selectedAnswer" value="option3">
+				<label>Enter the Option 3:</label>
+				<input type="text" ng-model="option3"><br/>
+			</div>	
+			<br/>
+			
+			<div ng-if="myVar1 == true">
+				Click to add another option:
+				<input type="checkbox" ng-model="myVar2" ng-init="myVar2 = false"><br/>
+				<div ng-if="myVar2 == true">
+					<input type="radio"  name="answerGroup" required ng-model="$parent.selectedAnswer" value="option4">
+					<label>Enter the Option 4:</label>
+				<input type="text" ng-model="option4"><br/>
+				</div>	
+				<br/>
+			</div>
+			
+			<label>Enter the marks for this question:</label>
+			<input type="text" ng-model="marks"><br/>
+			<br/>
+			<br/>
+			
+			</script>
+			
+			<button ng-click="ctrl.addForm(0)" ng-click="next(selectedAnswer)" ng-disabled="myForm.answerGroup.$invalid" > Add another question. </button>
+			<button ng-click="next(selectedAnswer)" ng-disabled="myForm.answerGroup.$invalid"> Submit </button>
+			<button ng-click=""> Cancel </button>
+		
+		<br/>
+		<br/>
+		<br/>
+		
+		</div>
+		</div> 
+		
+		<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1"></div>
+	</div>
+	
+</form>

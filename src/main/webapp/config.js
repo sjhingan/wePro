@@ -10,6 +10,13 @@
                 controller: "TopicController",
                 controllerAs: "model"
             })
+
+            .when("/mhire", {
+                templateUrl: "views/ManagerHireAssess/templates/ManagerHireAssess.view.client.html",
+                controller: "ManagerHireAssess",
+		controllerAs: "model"
+	    })
+
             .when("/project/:uid/open", {
                 templateUrl: "views/project/templates/project.open.view.client.html",
                 controller: "OpenProjectController",
@@ -23,6 +30,26 @@
             .when("/project/individual/:uid/:projectId", {
                 templateUrl: "views/project/templates/project.owner.individual.view.client.html",
                 controller: "OwnerSingleProjectController",
+                controllerAs: "model"
+            })
+            .when("/login", {
+                templateUrl: "views/Login/templates/login.view.client.html",
+                controller: "LoginController",
+                controllerAs: "model"
+            })
+            .when("/register", {
+                templateUrl: "views/Register/templates/register.view.client.html",
+                controller: "RegisterController",
+                controllerAs: "model"
+            })
+            .when("/assessment_status/:uid", {
+                templateUrl: "views/assessment_status/templates/project.assessmentStatus.view.client.html",
+                controller: "assessmentStatusController",
+                controllerAs: "model"
+            })
+            .when("/assessment_status/:uid/:status", {
+                templateUrl: "views/assessment_status/templates/project.assessmentStatus.view.client.html",
+                controller: "assessmentStatusController",
                 controllerAs: "model"
             })
             .otherwise({
