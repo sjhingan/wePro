@@ -2,10 +2,9 @@ package com.ip.wePro.project;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
-
-import java.util.Iterator;
-import java.util.LinkedList;
 import java.util.List;
 
 @Service
@@ -14,11 +13,8 @@ public class ProjectService {
     @Autowired
     ProjectRepository projectRepository;
 
-    @Autowired
-    ProjectSkillsRepository projectSkillsRepository;
-
-    public List<Project> getAllProjects(){
-        return projectRepository.findAll();
+    public Page<Project> getAllProjects(Pageable pageable){
+        return projectRepository.findAll(pageable);
     }
 
     public void addProject(Project project) {
@@ -27,17 +23,7 @@ public class ProjectService {
         }else{
             project.setStatusId(ProjectStatus.OPEN.value());
         }
-        project = projectRepository.save(project);
-        int projectId = project.getId();
-        System.out.println(projectId);
-        List<ProjectSkills> projectSkillsList = new LinkedList<>();
-        if(project.getSkills() != null && project.getSkills().size() > 0){
-            Iterator iterator = project.getSkills().iterator();
-            while(iterator.hasNext()){
-                projectSkillsList.add(new ProjectSkills(projectId, iterator.next().toString()));
-            }
-            projectSkillsRepository.saveAll(projectSkillsList);
-        }
+        projectRepository.save(project);
     }
 
     public Project getProject(int id) {
@@ -52,16 +38,16 @@ public class ProjectService {
         projectRepository.save(project);
     }
 
-    public List<Project> getAllProjectsByStatusIdAndOwner(int owner, int status) {
-        return projectRepository.findAllByStatusIdAndOwner(owner, status);
+    public List<Project> getAllProjectsByStatusIdAndOwner(int status, int owner, Pageable pageable) {
+        return projectRepository.findAllByStatusIdAndOwner(status, owner, pageable);
     }
 
-    public List<Project> getAllProjectsByStatusId(int status) {
-        return projectRepository.findAllByStatusId(status);
+    public Page<Project> getAllProjectsByStatusId(int status,Pageable pageable) {
+        return projectRepository.findAllByStatusId(status, pageable);
     }
 
-    public List<Project> getAllProjectsByOwner(int ownerId){
-        return projectRepository.findAllByOwner(ownerId);
+    public Page<Project> getAllProjectsByOwner(int ownerId, Pageable pageable){
+        return projectRepository.findAllByOwner(ownerId, pageable);
     }
 
     public void updateProjectStatus(int id, int status){

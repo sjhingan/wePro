@@ -17,7 +17,7 @@
         function loadAllTopics() {
             OpenProjectService.getAllProjects("OPEN")
                 .then(function (projects) {
-                    vm.getOpenProjectsList = projects.data;
+                    vm.getOpenProjectsList = projects.data["content"];
                 });
         }
 

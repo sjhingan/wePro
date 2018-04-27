@@ -9,13 +9,14 @@
             addProject : addProject,
             updateProject : updateProject,
             deleteProject : deleteProject,
-            getAllSkills : getAllSkills
+            getAllSkills : getAllSkills,
+            getProjectById : getProjectById
         };
 
         return api;
 
-        function getAllOwnerProjects(uid){
-            return $http.get("/project/get/owner/" + uid );
+        function getAllOwnerProjects(uid, offset, size){
+            return $http.get("/project/get/owner/" + uid +"?page=" + offset + "&size=" + size);
         }
 
         function addProject(project) {
@@ -32,6 +33,10 @@
 
         function getAllSkills() {
             return $http.get("/skills/all");
+        }
+
+        function getProjectById(projectId) {
+            return $http.get("/project/get/" + projectId);
         }
     }
 

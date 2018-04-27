@@ -1,5 +1,8 @@
 package com.ip.wePro;
 
+import com.ip.wePro.project.Project;
+import com.ip.wePro.project.ProjectRepository;
+import com.ip.wePro.project.ProjectSkills;
 import com.ip.wePro.testing.Book;
 import com.ip.wePro.testing.BookRepository;
 import com.ip.wePro.testing.Pages;
@@ -9,6 +12,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import javax.transaction.Transactional;
+import java.util.Date;
 import java.util.HashSet;
 import java.util.List;
 
@@ -22,6 +26,9 @@ public class WeProStartUp implements CommandLineRunner {
 
     @Autowired
     BookRepository bookRepository;
+
+    @Autowired
+    ProjectRepository projectRepository;
 
 
     @Override
@@ -51,6 +58,20 @@ public class WeProStartUp implements CommandLineRunner {
         System.out.println("Here");
 
         System.out.println(bookRepository.findAll());
+
+        Project project = new Project("first", "first desc", 1, 30, new Date(), 12, 0, 2, 24, "Yes");
+
+        ProjectSkills projectSkills1 = new ProjectSkills(project,1);
+        ProjectSkills projectSkills2 = new ProjectSkills(project,2);
+
+        project.setSkills(new HashSet<ProjectSkills>(){{
+            add(projectSkills1);
+            add(projectSkills2);
+        }});
+
+        projectRepository.save(project);
+
+        System.out.println(projectRepository.findAll());
     }
 
 

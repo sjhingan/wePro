@@ -8,6 +8,5 @@ import java.util.List;
 
 public interface ProjectSkillsRepository extends JpaRepository<ProjectSkills, Integer> {
 
-    @Query("select t from ProjectSkills t where t.projectId = :projectId")
-    public List<ProjectSkills> findAllSkillsByProjectId(@Param(value = "projectId") int projectId);
+
 }

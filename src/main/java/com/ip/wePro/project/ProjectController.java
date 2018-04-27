@@ -1,8 +1,9 @@
 package com.ip.wePro.project;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.List;
 
 @RestController
@@ -13,18 +14,18 @@ public class ProjectController {
     ProjectService projectService;
 
     @GetMapping("/get/all")
-    public List<Project> getAllProjects(){
-        return projectService.getAllProjects();
+    public Page<Project> getAllProjects(Pageable pageable){
+        return projectService.getAllProjects(pageable);
     }
 
     @GetMapping("/get")
-    public List<Project> getAllProjectsByStatusId(@RequestParam(value = "status") String status){
-        return projectService.getAllProjectsByStatusId(ProjectStatus.valueOf(status.toUpperCase()).value());
+    public Page<Project> getAllProjectsByStatusId(@RequestParam(value = "status") String status,Pageable pageable){
+        return projectService.getAllProjectsByStatusId(ProjectStatus.valueOf(status.toUpperCase()).value(), pageable);
     }
 
     @GetMapping("/get/{uid}/{status}")
-    public List<Project> getAllProjectsByStatusIdAndOwner(@PathVariable int uid, @PathVariable String status){
-        return projectService.getAllProjectsByStatusIdAndOwner(uid, ProjectStatus.valueOf(status.toUpperCase()).value());
+    public List<Project> getAllProjectsByStatusIdAndOwner(@PathVariable int uid, @PathVariable String status, Pageable pageable){
+        return projectService.getAllProjectsByStatusIdAndOwner(ProjectStatus.valueOf(status.toUpperCase()).value(), uid, pageable);
     }
 
     @PostMapping("/add")
@@ -49,8 +50,8 @@ public class ProjectController {
     }
 
     @GetMapping("/get/owner/{uid}")
-    public List<Project> getAllProjectsByOwner(@PathVariable(name = "uid") int id){
-        return projectService.getAllProjectsByOwner(id);
+    public Page<Project> getAllProjectsByOwner(@PathVariable(name = "uid") int id, Pageable pageable){
+        return projectService.getAllProjectsByOwner(id, pageable);
     }
 
     @PutMapping("/update/{id}/{status}")

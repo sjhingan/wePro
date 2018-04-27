@@ -1,42 +1,54 @@
 package com.ip.wePro.project;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import javax.persistence.*;
-import java.io.Serializable;
 
 @Entity
 @Table(name = "project_skills")
-@IdClass(ProjectSkills.class)
-public class ProjectSkills implements Serializable {
+public class ProjectSkills {
 
     @Id
-    @Column(name = "project_id")
-    private int projectId;
-    @Id
-    @Column(name = "skill_name")
-    private String skillName;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int id;
+
+    @Column(name = "skill_id")
+    private int skillId;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "project_id",nullable = false)
+    @JsonBackReference
+    private Project project;
 
     public ProjectSkills(){
 
     }
 
-    public ProjectSkills(int projectId, String skillName) {
-        this.projectId = projectId;
-        this.skillName = skillName;
+    public ProjectSkills(Project project, int skillId) {
+        this.project = project;
+        this.skillId = skillId;
     }
 
-    public int getProjectId() {
-        return projectId;
+    public int getId() {
+        return id;
     }
 
-    public void setProjectId(int projectId) {
-        this.projectId = projectId;
+    public void setId(int id) {
+        this.id = id;
     }
 
-    public String getSkillName() {
-        return skillName;
+    public Project getProject() {
+        return project;
     }
 
-    public void setSkillName(String skillName) {
-        this.skillName = skillName;
+    public void setProject(Project project) {
+        this.project = project;
+    }
+
+    public int getSkillId() {
+        return skillId;
+    }
+
+    public void setSkillId(int skillId) {
+        this.skillId = skillId;
     }
 }

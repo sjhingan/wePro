@@ -20,6 +20,11 @@
                 controller: "OwnerProjectController",
                 controllerAs: "model"
             })
+            .when("/project/individual/:uid/:projectId", {
+                templateUrl: "views/project/templates/project.owner.individual.view.client.html",
+                controller: "OwnerSingleProjectController",
+                controllerAs: "model"
+            })
             .otherwise({
                 redirectTo: "/"
             });

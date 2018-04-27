@@ -1,17 +1,22 @@
 package com.ip.wePro.project;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import javax.persistence.*;
 import java.util.Date;
 import java.util.Set;
 
 @Entity
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class Project {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     private String name;
+    @Column(columnDefinition = "TEXT")
     private String description;
     @Column(name = "status_id")
     private int statusId;
@@ -25,8 +30,9 @@ public class Project {
     private int pay;
     @Column(name = "assessment_required")
     private String assessmentRequired;
-    @Transient
-    private Set<String> skills;
+    @OneToMany(cascade = CascadeType.ALL,mappedBy = "project", fetch = FetchType.LAZY)
+    @JsonManagedReference
+    private Set<ProjectSkills> skills;
 
     public Project(){
 
@@ -125,11 +131,11 @@ public class Project {
         this.duration = duration;
     }
 
-    public Set<String> getSkills() {
+    public Set<ProjectSkills> getSkills() {
         return skills;
     }
 
-    public void setSkills(Set<String> skills) {
+    public void setSkills(Set<ProjectSkills> skills) {
         this.skills = skills;
     }
 
