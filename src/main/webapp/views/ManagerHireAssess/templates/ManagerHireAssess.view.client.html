@@ -1,0 +1,55 @@
+
+<h1> Creating Hiring Assessment </h1>
+<br/>
+
+<form ng-submit="model.addAssessment(model.assessmentList)">
+    
+    <div ng-repeat="value in model.assessmentList track by $index">
+    	<label>Enter the Question:</label><br/>
+        <input type="text" class="form-control" ng-model="model.assessmentList[$index].question">
+
+        <input type="radio" value="1" ng-class="{checked: model.assessmentList[$index].correctAnswer == 1}" ng-model="model.assessmentList[$index].correctAnswer">
+        <label>Enter the Option 1:</label>
+        <input type="text" ng-model="model.assessmentList[$index].option1"><br/>
+        <br/>
+
+        <input type="radio" value="2"  ng-class="{checked: model.assessmentList[$index].correctAnswer == 2}"  ng-model="model.assessmentList[$index].correctAnswer">
+        <label>Enter the Option 2:</label>
+        <input type="text" ng-model="model.assessmentList[$index].option2"><br/>
+        <br/>
+        
+        Click to add another option:
+		<input type="checkbox" ng-model="myVar1" ng-init="myVar1 = false"><br/>
+		<div ng-if="myVar1 == true">
+			<input type="radio" value="3" ng-class="{checked: model.assessmentList[$index].correctAnswer == 3}"  ng-model="model.assessmentList[$index].correctAnswer"> 
+			<label>Enter the Option 3:</label>
+			<input type="text" ng-model="model.assessmentList[$index].option3"><br/>
+		</div>	
+		<br/>
+		
+		<div ng-if="myVar1 == true">
+			Click to add another option:
+			<input type="checkbox" ng-model="myVar2" ng-init="myVar2 = false"><br/>
+			<div ng-if="myVar2 == true">
+				<input type="radio" value="4" ng-class="{checked: model.assessmentList[$index].correctAnswer == 4}"  ng-model="model.assessmentList[$index].correctAnswer"> 
+				<label>Enter the Option 4:</label>
+			<input type="text" ng-model="model.assessmentList[$index].option4"><br/>
+			</div>	
+			<br/>
+		</div>	
+		
+		<label>Enter the marks for this question:</label>
+			<input type="text" ng-model="model.assessmentList[$index].marks"><br/>
+		<br/>
+		<br/>
+			
+    </div>
+    
+    <div>
+        <button type="button" class="btn btn-outline-primary" ng-click="model.addQuestion()">Add Question</button>
+    </div>
+
+    <button type="submit" class="btn btn-outline-primary">Submit</button>
+
+</form>
+
