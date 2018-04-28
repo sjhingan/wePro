@@ -7,13 +7,15 @@
         var api = {
             getAllProjects : getAllProjects,
             getUsersOpenProjects : getUsersOpenProjects,
-            getUsersClosedProjects : getUsersClosedProjects
+            getUsersClosedProjects : getUsersClosedProjects,
+            addUserToProject : addUserToProject,
+            getUsersByProjectId : getUsersByProjectId
         };
 
         return api;
 
-        function getAllProjects(status){
-            return $http.get("/project/get?status="+status);
+        function getAllProjects(uid, status){
+            return $http.get("/project/get/applying/" + uid + "?status="+status);
         }
         
         /**
@@ -28,6 +30,14 @@
          */
         function getUsersClosedProjects(userId){
             return $http.get("/project/userprojects/history/"+userId);
+        }
+
+        function addUserToProject(userProject) {
+            return $http.post("/project/userprojects/add", userProject);
+        }
+
+        function getUsersByProjectId(projectId) {
+            return $http.get("/project/userprojects/getusers/" + projectId);
         }
     }
 

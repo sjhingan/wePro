@@ -40,4 +40,12 @@ public class UserProjectService {
 		LOGGER.info("CLOSED userProjects info : "+userProjects);
 		return results;
 	}
+
+    public void addUserToProject(UserProject userProject) {
+        userProjectRepository.save(userProject);
+    }
+
+    public List<UserProject> findAllByProjectId(int projectId){
+        return userProjectRepository.findAllByProjectId(projectId);
+    }
 }

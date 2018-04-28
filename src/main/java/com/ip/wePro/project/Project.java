@@ -21,11 +21,12 @@ public class Project {
     @Column(name = "status_id")
     private int statusId;
     private int duration;
+
     @Column(name = "due_date")
     private Date dueDate;
     private int owner;
     @Column(name = "assessment_id")
-    private int assessmentId;
+    private String assessmentId;
     private int positions;
     private int pay;
     @Column(name = "assessment_required")
@@ -38,7 +39,7 @@ public class Project {
 
     }
 
-    public Project(String name, String description, int statusId, int duration, Date dueDate, int owner, int assessmentId, int positions, int pay, String assessmentRequired) {
+    public Project(String name, String description, int statusId, int duration, Date dueDate, int owner, String assessmentId, int positions, int pay, String assessmentRequired) {
         this.name = name;
         this.description = description;
         this.statusId = statusId;
@@ -67,11 +68,11 @@ public class Project {
         this.owner = owner;
     }
 
-    public int getAssessmentId() {
+    public String getAssessmentId() {
         return assessmentId;
     }
 
-    public void setAssessmentId(int assessmentId) {
+    public void setAssessmentId(String assessmentId) {
         this.assessmentId = assessmentId;
     }
 

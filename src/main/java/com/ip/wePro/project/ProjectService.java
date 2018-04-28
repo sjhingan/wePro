@@ -6,6 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -45,12 +47,13 @@ public class ProjectService {
         projectRepository.save(project);
     }
 
-    public List<Project> getAllProjectsByStatusIdAndOwner(int status, int owner, Pageable pageable) {
+    public Page<Project> getAllProjectsByStatusIdAndOwner(int status, int owner, Pageable pageable) {
         return projectRepository.findAllByStatusIdAndOwner(status, owner, pageable);
     }
 
-    public Page<Project> getAllProjectsByStatusId(int status,Pageable pageable) {
-        return projectRepository.findAllByStatusId(status, pageable);
+    public Page<Project> findAllByStatusIdAndDueDateGreaterThanEqual(int status, Date date, int uid, Pageable pageable) {
+        List<Integer> appliedProjectIds = assessmentStatusRepository.findAllProjectIdByUid(uid);
+        return projectRepository.findAllByStatusIdAndDueDateGreaterThanEqualAndIdNotIn(status, date, appliedProjectIds, pageable);
     }
 
     public Page<Project> getAllProjectsByOwner(int ownerId, Pageable pageable){
@@ -64,5 +67,10 @@ public class ProjectService {
     public List<Project> getAllProjectsByProjectID(int id) {
 
         return projectRepository.findAllByProjectID(id);
+    }
+
+    public void updateProjectAssessmentId(int id, int assessmentId){
+        projectRepository.updateProjectAssessmentId(id, assessmentId);
+        updateProjectStatus(id, ProjectStatus.OPEN.value());
     }
 }

@@ -1,9 +1,14 @@
 package com.ip.wePro.project;
 
+import com.ip.wePro.userProject.UserProject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.web.bind.annotation.*;
+
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -33,9 +38,17 @@ public class ProjectController {
         return projectService.getAllProjects(pageable);
     }
 
-    @GetMapping("/get")
-    public Page<Project> getAllProjectsByStatusId(@RequestParam(value = "status") String status,Pageable pageable){
-        return projectService.getAllProjectsByStatusId(ProjectStatus.valueOf(status.toUpperCase()).value(), pageable);
+    @GetMapping("/get/applying/{uid}")
+    public Page<Project> getAllProjectsByStatusId(@RequestParam(value = "status") String status,@PathVariable int uid, Pageable pageable){
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        String currentDate = dateFormat.format(new Date());
+        Date today = new Date();
+        try {
+            today = dateFormat.parse(currentDate);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        return projectService.findAllByStatusIdAndDueDateGreaterThanEqual(ProjectStatus.valueOf(status.toUpperCase()).value(), today, uid, pageable);
     }
 
     /**
@@ -45,14 +58,13 @@ public class ProjectController {
      * @return
      */
     @GetMapping("/get/{uid}/{status}")
-    public List<Project> getAllProjectsByStatusIdAndOwner(@PathVariable int uid, @PathVariable String status, Pageable pageable){
+    public Page<Project> getAllProjectsByStatusIdAndOwner(@PathVariable int uid, @PathVariable String status, Pageable pageable){
         return projectService.getAllProjectsByStatusIdAndOwner(ProjectStatus.valueOf(status.toUpperCase()).value(), uid, pageable);
     }
 
     @PostMapping("/add")
     public void getAllProjects(@RequestBody Project project){
          projectService.addProject(project);
-
     }
 
     @GetMapping("/getproj/{id}")
@@ -105,5 +117,15 @@ public class ProjectController {
     @GetMapping("/userprojects/history/{uid}")
     public List<Project> getClosedProjectsByUserId(@PathVariable Long uid){
         return userProjectService.getClosedProjectsByUserId(uid);
+    }
+
+    @PostMapping("/userprojects/add")
+    public void addUserToProject(@RequestBody UserProject userProject){
+        userProjectService.addUserToProject(userProject);
+    }
+
+    @GetMapping("/userprojects/getusers/{projectId}")
+    public List<UserProject> getAllByProjectId(@PathVariable int projectId){
+        return userProjectService.findAllByProjectId(projectId);
     }
 }

@@ -3,9 +3,10 @@
         .module("weProApp")
         .controller("OpenProjectController", openProjectController);
 
-    function openProjectController(OpenProjectService) {
+    function openProjectController(OpenProjectService, AssessmentStatusService, $routeParams) {
         var vm = this;
         vm.applyJob = applyJob;
+        vm.uid = $routeParams['uid'];
 
         function init() {
             vm.getOpenProjectsList = undefined;
@@ -15,14 +16,26 @@
         init();
 
         function loadAllTopics() {
-            OpenProjectService.getAllProjects("OPEN")
+            OpenProjectService.getAllProjects(vm.uid ,"OPEN")
                 .then(function (projects) {
                     vm.getOpenProjectsList = projects.data["content"];
                 });
         }
 
         function applyJob(project) {
+            var assessment = new Object();
+            assessment.uid = vm.uid;
+            assessment.projectId = project.id;
+            if(project.assessmentRequired == "Yes"){
+                assessment.assesmentStatus = "Pending";
+            }else{
+                assessment.assesmentStatus = "N/A";
+            }
 
+            AssessmentStatusService.applyToProject(assessment)
+                .then(function (status) {
+                    loadAllTopics()
+                });
         }
 
     }

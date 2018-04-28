@@ -11,7 +11,7 @@
             <a ng-click="model.ownerIndividualProjectPage(project)" href="">{{project.name}}</a>
         </div>
         <div class="card-body">
-            <p class="card-text">{{project.description}}</p>
+            <p class="card-text">{{project.description.substring(0,project.description.length > 277 ? 277 : project.description.length).concat("...")}}</p>
             <button type="button" ng-show='"{{project.assessmentId}}" != 0 ? true : false' class="btn btn-outline-info">Update Assessment</button>
             <button type="button" ng-show='"{{project.assessmentRequired}}" == "Yes" ? true : false' class="btn btn-outline-warning">Create Assessment</button>
             <button type="button" ng-click="model.editProject(project)" class="btn btn-outline-secondary">Edit</button>

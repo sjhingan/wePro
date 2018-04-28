@@ -6,7 +6,10 @@
     function assessmentStatusService($http) {
         var api = {
             getAllProjectsByOwner : getAllProjectsByOwner,
-            getAllProjectsByOwnerStatus : getAllProjectsByOwnerStatus
+            getAllProjectsByOwnerStatus : getAllProjectsByOwnerStatus,
+            applyToProject : applyToProject,
+            getAssessmentResultsById : getAssessmentResultsById,
+            getAssessmentsByProjectId : getAssessmentsByProjectId
         };
 
         return api;
@@ -17,6 +20,18 @@
 
         function getAllProjectsByOwnerStatus(uid, status){
             return $http.get("/assessment_status/get/"+uid+"/"+status);
+        }
+
+        function applyToProject(assessment) {
+            return $http.post("/assessment_status/add", assessment);
+        }
+
+        function getAssessmentResultsById(assessmentId) {
+            return $http.get("/assessment/result/get/" + assessmentId);
+        }
+
+        function getAssessmentsByProjectId(projectId) {
+            return $http.get("/assessment_status/get/applied/" + projectId);
         }
     }
 

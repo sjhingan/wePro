@@ -45,4 +45,11 @@ public class Assessment_statusService {
         return projectRepository.findAllProjectDetailsBypid(assessmentStatusRepository.findAllProjectIDByStatusIdAndOwnerStatus(uid, assesmentStatus));
     }
 
+    public void addAssessment(Assessment_status assessment_status) {
+        assessmentStatusRepository.save(assessment_status);
+    }
+
+    public List<Assessment_status> findAllByProjectId(int projectId) {
+        return assessmentStatusRepository.findAllByProjectId(projectId);
+    }
 }

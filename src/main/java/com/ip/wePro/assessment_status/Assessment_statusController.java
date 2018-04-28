@@ -1,5 +1,6 @@
 package com.ip.wePro.assessment_status;
 
+import com.ip.wePro.assessment.Assessment;
 import com.ip.wePro.project.Project;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -54,5 +55,13 @@ public class Assessment_statusController {
         return assessmentStatusService.getAllProjectDetailsBypid(uid, assesmentStatus);
     }
 
+    @PostMapping("/add")
+    public void addAssessment(@RequestBody Assessment_status assessment_status){
+        assessmentStatusService.addAssessment(assessment_status);
+    }
 
+    @GetMapping("/get/applied/{projectId}")
+    public List<Assessment_status> findAllByProjectId(@PathVariable int projectId){
+        return assessmentStatusService.findAllByProjectId(projectId);
+    }
 }

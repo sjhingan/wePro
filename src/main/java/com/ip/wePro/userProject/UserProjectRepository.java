@@ -4,6 +4,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
+import javax.jws.soap.SOAPBinding;
 import java.util.List;
 
 public interface UserProjectRepository extends JpaRepository<UserProject, Integer> {
@@ -23,4 +24,6 @@ public interface UserProjectRepository extends JpaRepository<UserProject, Intege
      */
     @Query("select t from UserProject t where t.user_id = :userId and t.active=0")
 	public List<UserProject> findClosedProjectsByUserId(@Param(value = "userId") Long userId);
+
+    List<UserProject> findAllByProjectId(int projectId);
 }
