@@ -2,7 +2,7 @@
     angular
         .module("weProApp")
         .controller("OwnerProjectController", ownerProjectController);
-    
+
     function ownerProjectController($routeParams, OwnerProjectService, $location) {
         var vm = this;
         vm.uid = $routeParams['uid'];
@@ -24,6 +24,7 @@
         }
 
         init();
+
 
         function loadAllOwnerProjects(offset, size) {
             OwnerProjectService.getAllOwnerProjects(vm.uid, offset, size)
@@ -159,6 +160,19 @@
         function ownerIndividualProjectPage(project) {
             console.log(project.id);
             $location.url("/project/individual/" + vm.uid + "/" + project.id);
+        }
+
+        function deleteProjectPrompt(project) {
+            vm.deletingProject = project;
+            $('#deleteProject').modal('show');
+        }
+
+        function deleteProject(project) {
+            OwnerProjectService.deleteProject(project.id)
+                .then(function (status) {
+                    $('#deleteProject').modal('hide');
+                    init();
+                });
         }
     }
 

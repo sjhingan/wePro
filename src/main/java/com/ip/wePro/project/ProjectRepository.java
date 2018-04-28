@@ -23,7 +23,7 @@ public interface ProjectRepository extends JpaRepository<Project, Integer>, Pagi
     @Query("update Project p set p.statusId = :status where p.id = :id")
     Project updateProjectStatus(@Param("status") int status, @Param("id") int id);
 
-    @Query("select p from Project p where p.owner = :owner")
+    @Query("select p from Project p where p.owner = :owner and p.statusId in (0,1,2,3)")
     List<Project> findAllByOwner(@Param("owner") int owner);
 
     @Query("select p from Project p where p.id = :id")
