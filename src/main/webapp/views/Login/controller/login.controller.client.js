@@ -1,33 +1,30 @@
+//loginController.js
 (function () {
-    'use strict';
-
     angular
         .module('weProApp')
         .controller('LoginController', LoginController);
 
-    LoginController.$inject = ['$location', 'AuthenticationService', 'FlashService'];
-    function LoginController($location, AuthenticationService, FlashService) {
+    function LoginController(AuthenticationService,$location) {
         var vm = this;
-
         vm.login = login;
 
-        (function initController() {
-            // reset login status
-            AuthenticationService.ClearCredentials();
-        })();
+        function login(user) {
+           // console.log(user);
 
-        function login() {
-            vm.dataLoading = true;
-            AuthenticationService.Login(vm.username, vm.password, function (response) {
-                if (response.success) {
-                    AuthenticationService.SetCredentials(vm.username, vm.password);
-                    $location.path('/');
+            AuthenticationService.loginuser(user).then(function (response) {
+
+                if (response.data!= -1) {
+                    alert('Login successful');
+                    $location.url("/dashboard");
+
+                    //('#!/home');
+                    // $location.path('/login');
                 } else {
-                    FlashService.Error(response.message);
-                    vm.dataLoading = false;
+                    alert('Login Unsuccessful! Try Again!');
+                   // $location.url("/login");
+
                 }
             });
-        };
+        }
     }
-
 })();

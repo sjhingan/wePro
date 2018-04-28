@@ -1,0 +1,16 @@
+<h1>Welcome to Project!!!</h1>
+<div ng-repeat="assessment in model.getAssessmentStatus">
+    <div class="card mb-3 col-sm-10">
+        <div class="card-header ">
+            <a >User ID: {{assessment.uid}}</a>
+        </div>
+        <div class="card-body">
+            <h5 class="card-title">Special title treatment</h5>
+            <p class="card-text">Project ID: {{assessment.projectId}}</p>
+            <a href="#" class="btn btn-primary">Take Assessment</a>
+        </div>
+        <div class="card-footer text-muted">
+            Assessment Status: {{assessment.assesmentStatus}}
+        </div>
+    </div>
+</div>

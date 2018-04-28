@@ -1,0 +1,46 @@
+<h1>Update Profile</h1>
+<label>UserId</label>
+<input ng-model="profile.id" class="form-control" placeholder={{model.oldprofile.id}}>
+
+<label>Email id</label>
+<input ng-model="profile.email" class="form-control" placeholder={{model.oldprofile.email}}>
+
+
+<label>First Name</label>
+<input ng-model="profile.firstname" class="form-control" placeholder={{model.oldprofile.firstname}}>
+
+
+<label>Last Name</label>
+<input ng-model="profile.lastname" class="form-control" placeholder={{model.oldprofile.lastname}}>
+
+
+<label>Password</label>
+<input ng-model="profile.password" class="form-control" placeholder= {{model.oldprofile.password}}>
+
+
+<label>Date Of Birth</label>
+<input ng-model="profile.dob" class="form-control" placeholder= {{model.oldprofile.dob}}>
+
+
+<label>Gender</label>
+<input ng-model="profile.gender" class="form-control" placeholder= {{model.oldprofile.gender}}>
+
+
+<label>Address</label>
+<textarea ng-model="profile.address" class="form-control" placeholder= {{model.oldprofile.address}}></textarea>
+
+
+<label>Phone</label>
+<textarea ng-model="profile.phone" class="form-control" placeholder= {{model.oldprofile.phone}}></textarea>
+
+<label>Occupation</label>
+<input ng-model="profile.occupation" class="form-control" placeholder= {{model.oldprofile.occupation}}>
+
+<label>Experience</label>
+<textarea ng-model="profile.experience" class="form-control" placeholder= {{model.oldprofile.experience}}></textarea>
+
+<label>Description</label>
+<input ng-model="profile.description" class="form-control" placeholder= {{model.oldprofile.description}}>
+
+<button ng-click="model.updateProfile(profile)" class="btn btn-primary btn-block">Update</button>
+

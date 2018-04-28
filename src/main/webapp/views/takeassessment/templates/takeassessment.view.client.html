@@ -1,0 +1,57 @@
+<h1>Take Assessment</h1>
+<br>
+<form>
+<button type="button" class="btn btn-outline-primary" ng-click="model.takedata()" > Take Assessment! </button>
+</form>
+<br>
+<br>
+<form>
+	<div class="row">
+	
+		<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1"></div>
+		
+		<div class="col-lg-10 col-md-10 col-sm-10 col-xs-10">
+			<div ng-repeat="questiondata in model.getallQuestionList"> <!-- ng-repeat -->
+				<label>Question: </label> 
+				<!-- <a> Full Question Here</a> -->
+				<a>{{questiondata.question}}</a>
+				<br/>
+				
+				<!-- CONDITION TO CHECK THE NUMBER OF OPTIONS AND THEN DISPLAY -->
+				<!-- UNCOMMENT THIS WHEN DB IS CONNECTED  <input type="radio" value="1" ng-class="{checked: model.assessmentList[$index].correctAnswer == 1}" ng-model="model.assessmentList[$index].correctAnswer"> -->
+		        <input type="radio" value="1"> <!-- DELETE THIS LATER -->
+		        <label>{{questiondata.option1}}<!-- retreive from db --></label>
+		        <br/>
+		        <input type="radio" value="2"> <!-- DELETE THIS LATER -->
+		        <label>  {{questiondata.option2}} <!-- retreive from db --></label>
+		        <br/>
+		        
+		        <!-- IF FOR OPTION 3
+		        
+					<div ng-if="questiondata.option3 !=  null">
+						<input type="radio" value="3"> 
+						<label>{{questiondata.option3}}</label>
+					</div>
+					
+				<!-- IF FOR OPTION 4 -->
+				
+					<div ng-if="questiondata.option4 !=  null">
+						<input type="radio" value="4"> 
+						<label>{{questiondata.option4}}</label>
+					</div>
+				
+				
+					<br/>
+		        
+		        
+				
+			</div> <!-- END OF NG-REPEAT -->
+	<br/>
+	<br/>
+	<button type="submit" class="btn btn-outline-primary">Submit</button>
+	<button type="button" class="btn btn-outline-primary">Button</button>
+		
+		</div> <!-- End of COL 10 -->
+		<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1"></div>
+	</div>
+</form>

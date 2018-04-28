@@ -1,0 +1,36 @@
+<h1>Current Projects</h1>
+
+<div ng-controller="UserOpenProjects as opj">
+	<div class="panel-body">
+		<table class="table table-bordered bordered table-striped table-condensed datatable" ui-jq="dataTable" ui-options="dataTableOpt">
+			<thead>
+				<tr>
+					<th>Project Name</th>
+					<th>Description</th>
+					<th>Owner</th>
+					<th>Due Date</th>
+					<th>Duration</th>
+					<th>Pay</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr ng-repeat="project in opj.getUsersOpenProjectsList">
+					<td>{{project.name}}</td>
+					<td>{{project.description}}</td>
+					<td>{{project.owner}}</td>
+					<td>{{project.due_date}}</td>
+					<td>{{project.duration}}</td>
+					<td>{{project.pay}}</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+</div>
+<style>
+	table tr th{
+	  background:#337ab7;
+	  color:white;
+	  text-align:left;
+	  vertical-align:center;
+	}
+</style>
