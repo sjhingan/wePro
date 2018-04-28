@@ -45,3 +45,13 @@ create table assessment_result(
 		primary key (user_id,assessment_id),
 		FOREIGN KEY (user_id) REFERENCES user(user_id)
 	);
+
+CREATE TABLE `user_project` (
+   `id` bigint(20) NOT NULL,
+   `user_id` bigint(20) NOT NULL,
+   `project_id` int(11) NOT NULL,
+   `active` tinyint(1) NOT NULL DEFAULT '0',
+   PRIMARY KEY (`id`),
+   KEY `projectId_fk_idx` (`project_id`),
+   CONSTRAINT `projectId_fk` FOREIGN KEY (`project_id`) REFERENCES `project` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+ ) ENGINE=InnoDB DEFAULT CHARSET=latin1
