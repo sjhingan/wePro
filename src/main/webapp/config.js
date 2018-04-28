@@ -14,13 +14,9 @@
             .when("/mhire", {
                 templateUrl: "views/ManagerHireAssess/templates/ManagerHireAssess.view.client.html",
                 controller: "ManagerHireAssess",
-				controllerAs: "model"
-            })
-            .when("/takeassesment", {
-                templateUrl: "views/takeassessment/templates/takeassessment.view.client.html",
-                controller: "TakeAssessmentController",
-                controllerAs: "model"
-            })            
+		        controllerAs: "model"
+	        })
+
             .when("/project/:uid/open", {
                 templateUrl: "views/project/templates/project.open.view.client.html",
                 controller: "OpenProjectController",
@@ -36,44 +32,23 @@
                 controller: "LoginController",
                 controllerAs: "model"
             })
+            .when("/home", {
+                templateUrl: "views/Home/templates/home.view.html",
+                controller: "HomeController",
+                controllerAs: "model"
+            })
             .when("/register", {
                 templateUrl: "views/Register/templates/register.view.client.html",
                 controller: "RegisterController",
                 controllerAs: "model"
             })
-            .when("/assessment_status/:uid", {
-                templateUrl: "views/assessment_status/templates/project.assessmentStatus.view.client.html",
-                controller: "assessmentStatusController",
-                controllerAs: "model"
-            })
-            .when("/assessment_status/:uid/:status", {
-                templateUrl: "views/assessment_status/templates/project.assessmentStatus.view.client.html",
-                controller: "assessmentStatusController",
-                controllerAs: "model"
-            })
-            .when("/project/userprojects/:uid", {
-                templateUrl: "views/project/templates/UserOpenProjects.html",
-                controller: "UserOpenProjects",
-                controllerAs: "model"
-            })
-            // http://localhost:8090/#/project/userprojects/history/1
-            .when("/project/userprojects/history/:uid", {
-                templateUrl: "views/project/templates/UserClosedProjects.html",
-                controller: "UserClosedProjects",
-                controllerAs: "model"
-            })
-            .when("/profile/viewprofile/:uid", {
-                 templateUrl: "views/profile/templates/profile.view.client.html",
-                 controller: "UserProfileController",
-                 controllerAs: "model"
-             })
-             .when("/profile/setprofile/:uid", {
-                  templateUrl: "views/profile/templates/profile.setprofile.html",
-                  controller: "SetProfileController",
-                  controllerAs: "model"
-             })
             .otherwise({
-                redirectTo: "/"
+                redirectTo: "/login"
             });
-    };
+    }
+    run.$inject = ['$rootScope'];
+
+    function run(){
+        console.clear();
+    }
 })();

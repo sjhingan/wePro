@@ -1,7 +1,6 @@
 package com.ip.wePro.project;
 
 
-import com.ip.wePro.assessment_status.Assessment_statusRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -17,9 +16,6 @@ public class ProjectService {
 
     @Autowired
     ProjectSkillsRepository projectSkillsRepository;
-
-    @Autowired
-    Assessment_statusRepository assessmentStatusRepository;
 
     public List<Project> getAllProjects(){
         return projectRepository.findAll();
@@ -55,14 +51,5 @@ public class ProjectService {
     public List<Project> getAllProjectsByStatusId(int status) {
         return projectRepository.findAllByStatusId(status);
     }
-
-
-    public List<Project> getAllProjectsByProjectID(int id) {
-
-        return projectRepository.findAllByProjectID(id);
-    }
-
-
-
 
 }

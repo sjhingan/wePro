@@ -20,6 +20,7 @@
                     console.log(vm.getOpenProjectsList);
                 });
         }
+
     }
 
 })();

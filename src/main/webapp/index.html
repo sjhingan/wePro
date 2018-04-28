@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en" ng-app="weProApp">
-<script>
+<head>
     <meta charset="UTF-8">
     <title>First Page</title>
 
@@ -20,7 +20,6 @@
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular-route.min.js"></script>
 
-
     <!--<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>-->
 
 
@@ -29,33 +28,33 @@
     
     <!-- controller -->
     <script src="views/topic/controllers/topic.controller.client.js"></script>
-	<script src="views/ManagerHireAssess/controllers/ManagerHireAssess.controller.client.js"></script>
-    <script src="views/project/controllers/project.open.controller.client.js"></script>
-    <script src="views/project/controllers/project.owner.controller.client.js"></script>
 
-    <script src="views/takeassessment/controller/takeassessment.controller.client.js"></script>
-    
+	<script src="views/ManagerHireAssess/controllers/ManagerHireAssess.controller.client.js"></script>
+
+    <script src="views/Login/controller/login.controller.client.js"></script>
+    <script src="views/Register/controller/register.controller.client.js"></script>
+    <script src="views/Home/controller/home.controller.js"></script>
+
+
     <!-- services -->
 
     <script src="services/topic.service.client.js"></script>
 	<script src="services/ManagerHireAssess.service.client.js"></script>
-	<script src="services/project.open.service.client.js"></script>
-	<script src="services/TakeAssessment.service.client.js"></script>
+    <script src="services/authentication.service.client.js"></script>
+    <script src="services/user.service.client.js"></script>
 
 
-    <script src="views/assessment_status/controllers/project.assessmentstatus.controller.client.js"></script>
-    <script src="views/project/controllers/userOpenProjects.js"></script>
-    <script src="views/project/controllers/userClosedProjects.js"></script>
-    <script src="views/profile/controllers/profile.controller.client.js"></script>
-    <script src="views/profile/controllers/profile.controller.setprofile.js"></script>
+
+    <script src="views/project/controllers/project.open.controller.client.js"></script>
+    <script src="views/project/controllers/project.owner.controller.client.js"></script>
 
     <!-- services -->
 
    
-    
-    <script src="services/project.assesmentstatus.service.client.js"></script>
-    <script src="services/profile.service.client.js"></script>
+    <script src="services/project.open.service.client.js"></script>
 
+
+	
 </head>
 <body>
 <div ng-view></div>

@@ -1,29 +1,27 @@
 (function () {
-    'use strict';
-
     angular
         .module('weProApp')
-        .controller('RegisterController', RegisterController);
+        .controller('RegisterController', registerController);
 
-    RegisterController.$inject = ['UserService', '$location', '$rootScope', 'FlashService'];
-    function RegisterController(UserService, $location, $rootScope, FlashService) {
+    function registerController(UserService, $location) {
         var vm = this;
-
         vm.register = register;
-
-        function register() {
-            vm.dataLoading = true;
-            UserService.Create(vm.user)
+       //alert("Inside controller");
+        function register(user) {
+            //alert("Inside register from controller");
+            console.log(user);
+            UserService.create(user)
                 .then(function (response) {
-                    if (response.success) {
-                        FlashService.Success('Registration successful', true);
-                        $location.path('/login');
+                    if (response.data==1) {
+                        alert('Registration successful');
+                        $location.url("/login");
+                        //('#!/login');
+                       // $location.path('/login');
                     } else {
-                        FlashService.Error(response.message);
-                        vm.dataLoading = false;
+                        alert(response.message);
+                        //vm.dataLoading = false;
                     }
                 });
         }
     }
-
 })();

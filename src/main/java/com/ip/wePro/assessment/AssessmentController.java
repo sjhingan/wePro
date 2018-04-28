@@ -21,12 +21,10 @@ public class AssessmentController {
 	
 	/* This method will return the newly created assessmentID for the project which is creating this assessment*/
 	@PostMapping("/add/{projectId}")	
-	public String addAssessment(@RequestBody AssessmentList assessmentList,@PathVariable String projectId)
+	public String addAssessment(@RequestBody AssessmentList assessmentList,@PathVariable int projectId)
 	{
-		int projectID = Integer.parseInt(projectId);
-		//System.out.println("list="+assessmentList + "\nPID="+projectId);
-		String assessmentId = assessmentService.addAssessment(assessmentList,projectID);
-		return assessmentId; 		
+		System.out.println("list="+assessmentList + "\nPID="+projectId);
+		return assessmentService.addAssessment(assessmentList,projectId);		
 	}
 		
 	/* This method will retrieve the list of all questions & their respective options of respective assessment*/
