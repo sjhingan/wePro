@@ -23,8 +23,21 @@ create table project(
 	pay int,
 	primary key(id)
 );
-
-
+CREATE TABLE `user` (
+   `id` int(11) NOT NULL AUTO_INCREMENT,
+   `email` varchar(255) DEFAULT NULL,
+   `firstname` varchar(255) DEFAULT NULL,
+   `lastname` varchar(45) DEFAULT NULL,
+   `password` varchar(255) DEFAULT NULL,
+   `dob` varchar(255) DEFAULT NULL,
+   `gender` varchar(255) DEFAULT NULL,
+   `address` varchar(255) DEFAULT NULL,
+   `phone` varchar(255) DEFAULT NULL,
+   `occupation` varchar(255) DEFAULT NULL,
+   `experience` varchar(255) DEFAULT NULL,
+   `description` varchar(700) DEFAULT NULL,
+   PRIMARY KEY (`id`)
+ ) ENGINE=InnoDB DEFAULT CHARSET=latin1
 
 create table skills(
 	id int not null auto_increment,
@@ -55,3 +68,22 @@ CREATE TABLE `user_project` (
    KEY `projectId_fk_idx` (`project_id`),
    CONSTRAINT `projectId_fk` FOREIGN KEY (`project_id`) REFERENCES `project` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
  ) ENGINE=InnoDB DEFAULT CHARSET=latin1
+ 
+ CREATE TABLE `user_skills` (
+  `id` INT(11) NOT NULL,
+  `user_id` INT(11) NULL,
+  `skill_id` INT(11) NULL,
+  PRIMARY KEY (`id`),
+  INDEX `sk_fk_idx` (`skill_id` ASC),
+  INDEX `uid_fk_idx` (`user_id` ASC),
+  CONSTRAINT `sk_fk`
+    FOREIGN KEY (`skill_id`)
+    REFERENCES `skills` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `uid_fk`
+    FOREIGN KEY (`user_id`)
+    REFERENCES `user` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION);
+

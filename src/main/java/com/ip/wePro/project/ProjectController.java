@@ -55,7 +55,7 @@ public class ProjectController {
 
     }
 
-    @GetMapping("/get/{id}")
+    @GetMapping("/getproj/{id}")
     public Project getProjectById(@PathVariable int id){
         return projectService.getProject(id);
     }

@@ -1,0 +1,58 @@
+<h1>Welcome <a >{{model.profile.firstname + " "+ model.profile.lastname}}</a>
+</h1>
+
+
+<!-- <div ng-repeat="profile in model.getUserProfile"> -->
+    <div>
+     <div class="card mb-3 col-sm-10">
+
+        <div class="card-body">
+            <h5 class="card-title">Date Of Birth</h5>
+            <p class="card-text">{{model.profile.dob}}</p>
+        </div>
+
+        <div class="card-body">
+            <h5 class="card-title">Gender</h5>
+            <p class="card-text">{{model.profile.gender}}</p>
+        </div>
+
+        <div class="card-body">
+            <h5 class="card-title">Address</h5>
+            <p class="card-text">{{model.profile.address}}</p>
+        </div>
+
+        <div class="card-body">
+            <h5 class="card-title">Email</h5>
+            <p class="card-text">{{model.profile.email}}</p>
+        </div>
+
+        <div class="card-body">
+            <h5 class="card-title">Phone Number</h5>
+            <p class="card-text">{{model.profile.phone}}</p>
+        </div>
+
+        <div class="card-body">
+            <h5 class="card-title">Occupation</h5>
+            <p class="card-text">{{model.profile.occupation}}</p>
+        </div>
+
+        <div class="card-body">
+            <h5 class="card-title">Experience</h5>
+            <p class="card-text">{{model.profile.experience}}</p>
+        </div>
+
+
+    </div>
+    <a href="#" class="btn btn-primary">Edit Profile</a>
+
+
+<!-- <label>Skills and Specialization </label>
+<textarea ng-model="topic.description" class="form-control"></textarea>
+ -->
+<br>
+
+<button ng-click="model.addTopic(topic)" class="btn btn-primary btn-block">Create</button>
+<button ng-click="updateTodo(todo)" class="btn btn-success btn-block">Refresh</button>
+
+
+</div>

@@ -61,11 +61,22 @@
                 controller: "UserOpenProjects",
                 controllerAs: "model"
             })
+            // http://localhost:8090/#/project/userprojects/history/1
             .when("/project/userprojects/history/:uid", {
                 templateUrl: "views/project/templates/UserClosedProjects.html",
                 controller: "UserClosedProjects",
                 controllerAs: "model"
             })
+            .when("/profile/viewprofile/:uid", {
+                 templateUrl: "views/profile/templates/profile.view.client.html",
+                 controller: "UserProfileController",
+                 controllerAs: "model"
+             })
+             .when("/profile/setprofile/:uid", {
+                  templateUrl: "views/profile/templates/profile.setprofile.html",
+                  controller: "SetProfileController",
+                  controllerAs: "model"
+             })
             .otherwise({
                 redirectTo: "/"
             });
