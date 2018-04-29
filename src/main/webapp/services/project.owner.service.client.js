@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 (function () {
     angular
         .module("weProApp")

@@ -76,9 +76,9 @@
                   controller: "SetProfileController",
                   controllerAs: "model"
              })
-            .when("/home", {
+            .when("/dashboard", {
                 templateUrl: "views/home/templates/dashboard.html",
-                controller: "HomeController",
+                controller: "DashboardController",
                 controllerAs: "model"
             })
             .when("/notifications", {
@@ -86,8 +86,13 @@
                 controller: "NotificationController",
                 controllerAs: "model"
             })
+            .when("/home", {
+                templateUrl: "views/home/templates/home.html",
+                controller: "DashboardController",
+                controllerAs: "model"
+            })
             .otherwise({
-                redirectTo: "/login"
+                redirectTo: "/home"
             });
     };
     run.$inject = ['$rootScope'];
