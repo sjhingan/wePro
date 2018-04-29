@@ -1,10 +1,15 @@
 package com.ip.wePro.Notification;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import javax.mail.internet.MimeMessage;
+
+import com.ip.wePro.project.Project;
+import com.ip.wePro.project.ProjectSkills;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.javamail.JavaMailSender;
@@ -41,25 +46,35 @@ public class NotificationService {
      * @throws InterruptedException
      */
 	@Async
-    public void sendNotificationForProject(List<Integer> skills) throws InterruptedException {
-        logger.info("sendNotificationForProject: " + skills);
-        List<User> userList = userSkillsService.getUsersWithSkills(skills);
-        
-        for(User user : userList){
-        	try {
-				sendEmail(user.getEmail());
-				logger.info("New Project creation notification sent to email id: "+ user.getEmail());
-				Notification notification = new Notification();
-				notification.setSeen(false);
-				notification.setUserId(user.getId());
-				notification.setDescription("New Project found matching your skills.");
-				notificationRepository.save(notification);
-				logger.info("Added new notification for user email:"+user.getEmail());
-			} catch (Exception e) {
-				e.printStackTrace();
-				logger.log(Level.SEVERE, "Error occured while sending email to user: "+ user.getEmail());;
-			}
+    public void sendNotificationForProject(Project project) throws InterruptedException {
+        logger.info("sendNotificationForProject: " + project);
+        Set<ProjectSkills> projectSkills = project.getSkills();
+        List<Integer> skills = new ArrayList<>();
+        for (ProjectSkills s : projectSkills ){
+        	skills.add(s.getSkillId());
         }
+        if(skills.size()>0){
+        	List<User> userList = userSkillsService.getUsersWithSkills(skills);
+
+            for(User user : userList){
+            	try {
+    				sendEmail(user.getEmail());
+    				logger.info("New Project creation notification sent to email id: "+ user.getEmail());
+    				Notification notification = new Notification();
+    				notification.setSeen(false);
+    				notification.setUserId(user.getId());
+    				notification.setDescription("New Project found matching your skills.");
+    				notificationRepository.save(notification);
+    				logger.info("Added new notification for user email:"+user.getEmail());
+    			} catch (Exception e) {
+    				e.printStackTrace();
+    				logger.log(Level.SEVERE, "Error occured while sending email to user: "+ user.getEmail());;
+    			}
+            }
+        }else{
+        	logger.info("No skills found for project with project id: "+ project.getId());
+        }
+        
     }
     
 	/**

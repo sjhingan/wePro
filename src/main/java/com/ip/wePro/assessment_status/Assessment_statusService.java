@@ -42,8 +42,7 @@ public class Assessment_statusService {
 
     public List<Project> getAllProjectDetailsBypid(int uid, String assesmentStatus){
 
-        //return projectRepository.findAllProjectDetailsBypid(assessmentStatusRepository.findAllProjectIDByStatusIdAndOwnerStatus(uid, assesmentStatus));
-        return null;
+        return projectRepository.findAllProjectDetailsBypid(assessmentStatusRepository.findAllProjectIDByStatusIdAndOwnerStatus(uid, assesmentStatus));
     }
 
     public void addAssessment(Assessment_status assessment_status) {
