@@ -16,7 +16,11 @@
                 controller: "ManagerHireAssess",
 		        controllerAs: "model"
 	        })
-
+            .when("/takeassessment", {
+	                templateUrl: "views/takeassessment/templates/takeassessment.view.client.html",		
+	                controller: "TakeAssessmentController",		
+	                controllerAs: "model"		
+	            })
             .when("/project/:uid/open", {
                 templateUrl: "views/project/templates/project.open.view.client.html",
                 controller: "OpenProjectController",
