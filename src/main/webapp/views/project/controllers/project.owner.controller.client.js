@@ -15,6 +15,7 @@
         vm.ownerIndividualProjectPage = ownerIndividualProjectPage;
         const pageSize = 5;
         var firstLoad = true;
+        vm.getProjectStatus = getProjectStatus;
 
         function init() {
             vm.getOwnerProjectsList = undefined;
@@ -173,6 +174,22 @@
                     $('#deleteProject').modal('hide');
                     init();
                 });
+        }
+
+        function getProjectStatus(statusId) {
+            var status;
+            if(statusId == 0){
+                status = "SAVED";
+            }else if(statusId == 1){
+                status = "OPEN";
+            }else if(statusId == 2){
+                status = "CLOSE";
+            }else if(statusId == 3){
+                status = "IN_PROGRESS";
+            }else{
+                status = "COMPLETED";
+            }
+            return status;
         }
     }
 

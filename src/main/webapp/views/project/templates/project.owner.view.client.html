@@ -8,7 +8,10 @@
 <div ng-repeat="project in model.getOwnerProjectsList">
     <div class="card mb-3 col-sm-10">
         <div class="card-header">
-            <a ng-click="model.ownerIndividualProjectPage(project)" href="">{{project.name}}</a>
+            <div class="row">
+                <div class="col-11"><a ng-click="model.ownerIndividualProjectPage(project)" href="">{{project.name}}</a></div>
+                <div class="col-1"><span class="badge badge-pill badge-primary">{{model.getProjectStatus(project.statusId)}}</span></div>
+            </div>
         </div>
         <div class="card-body">
             <p class="card-text">{{project.description.substring(0,project.description.length > 277 ? 277 : project.description.length).concat("...")}}</p>
@@ -18,9 +21,11 @@
             <button type="button" ng-click="model.deleteProjectPrompt(project)" class="btn btn-outline-danger">Delete</button>
         </div>
         <div class="card-footer text-muted">
-            Due Date: {{project.dueDate.split('T')[0]}}
-            Payment: {{project.pay}}
-            Openings: {{project.positions}}
+            <div class="row">
+                <div class="col-4">Due Date: {{project.dueDate.split('T')[0]}}</div>
+                <div class="col-4">Payment: ${{project.pay}}/hr</div>
+                <div class="col-4">Openings: {{project.positions}}</div>
+            </div>
         </div>
     </div>
 </div>

@@ -10,7 +10,8 @@
             updateProject : updateProject,
             deleteProject : deleteProject,
             getAllSkills : getAllSkills,
-            getProjectById : getProjectById
+            getProjectById : getProjectById,
+            updateProjectStatus : updateProjectStatus
         };
 
         return api;
@@ -37,6 +38,10 @@
 
         function getProjectById(projectId) {
             return $http.get("/project/get/" + projectId);
+        }
+
+        function updateProjectStatus(projectId, status) {
+            return $http.put("/project/update/" + projectId + "/" + status);
         }
     }
 

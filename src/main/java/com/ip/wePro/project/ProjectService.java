@@ -61,7 +61,7 @@ public class ProjectService {
     }
 
     public void updateProjectStatus(int id, int status){
-        projectRepository.updateProjectStatus(id, status);
+        projectRepository.updateProjectStatus(status, id);
     }
 
     public List<Project> getAllProjectsByProjectID(int id) {
