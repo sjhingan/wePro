@@ -8,11 +8,9 @@
         vm.addTopic = addTopic;
 
         function init() {
-
             vm.topics = undefined;
             loadAllTopics();
         }
-
 
         init();
 
@@ -25,9 +23,6 @@
         
         function addTopic(topic) {
             console.log(topic);
-
-            console.log("Hi, some one clicked addTopic")
-
             TopicService.addTopic(topic)
                 .then(function (status) {
                     init();

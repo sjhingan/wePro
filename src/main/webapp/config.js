@@ -76,8 +76,24 @@
                   controller: "SetProfileController",
                   controllerAs: "model"
              })
+            .when("/home", {
+                templateUrl: "views/home/templates/dashboard.html",
+                controller: "HomeController",
+                controllerAs: "model"
+            })
+            .when("/notifications", {
+                templateUrl: "views/notification/templates/notification.html",
+                controller: "NotificationController",
+                controllerAs: "model"
+            })
             .otherwise({
-                redirectTo: "/"
+                redirectTo: "/login"
             });
     };
+    run.$inject = ['$rootScope'];
+
+    function run(){
+        console.clear();
+    }
+
 })();

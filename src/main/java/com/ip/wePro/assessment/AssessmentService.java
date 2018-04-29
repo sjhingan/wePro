@@ -17,22 +17,18 @@ public class AssessmentService {
 	//Add assessment in the database & return respective assessmentId
 	public String addAssessment(AssessmentList assessmentList,int projectId)
 	{		
-		String assessmentId = "Assessment_"+"0000";
+		String assessmentId = "Assessment_"+projectId;
 		
-		if(assessmentList.getAssessmentQuestions() != null)
+		List<Assessment> allQuestions = assessmentList.getAssessmentQuestions();
+		int length = allQuestions.size();
+		
+		// Setting up the customized id for each question
+		for(int i=0;i<length;i++)
 		{
-			
-			assessmentId = "Assessment_"+projectId;
-			List<Assessment> allQuestions = assessmentList.getAssessmentQuestions();
-			int length = allQuestions.size();
-			
-			// Setting up the customized id for each question
-			for(int i=0;i<length;i++)
-			{
-				allQuestions.get(i).setAssessmentId(assessmentId);		
-			}
-			assessmentRepository.saveAll(allQuestions);
-		}		
+			allQuestions.get(i).setAssessmentId(assessmentId);		
+		}
+		
+		assessmentRepository.saveAll(allQuestions);		
 		
 		return assessmentId;
 	}

@@ -51,26 +51,36 @@ create table project_skills(
 	skill_name varchar(255) not null
 );
      
-create table assessment_result(
-		user_id varchar(255),
-		assessment_id varchar(255),
-		result float(4,2),
-		primary key (user_id,assessment_id),
-		FOREIGN KEY (user_id) REFERENCES user(user_id)
-	);
+CREATE TABLE `assessment_result` (
+   `user_id` int(11) NOT NULL DEFAULT '0',
+   `assessment_id` varchar(255) NOT NULL DEFAULT '',
+   `result` float(4,2) DEFAULT NULL,
+   PRIMARY KEY (`user_id`,`assessment_id`),
+   CONSTRAINT `u_fk` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+ );	
+ 
+ CREATE TABLE `assessment_status` (
+   `id` int(11) NOT NULL AUTO_INCREMENT,
+   `assesment_status` varchar(255) DEFAULT NULL,
+   `project_id` int(11) DEFAULT NULL,
+   `uid` int(11) NOT NULL,
+   PRIMARY KEY (`id`),
+   KEY `user_fk_idx` (`uid`),
+   CONSTRAINT `user_fk` FOREIGN KEY (`uid`) REFERENCES `user` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+ )
 
 CREATE TABLE `user_project` (
-   `id` bigint(20) NOT NULL,
+   `id` bigint(20) NOT NULL AUTO_INCREMENT,
    `user_id` bigint(20) NOT NULL,
    `project_id` int(11) NOT NULL,
    `active` tinyint(1) NOT NULL DEFAULT '0',
    PRIMARY KEY (`id`),
    KEY `projectId_fk_idx` (`project_id`),
    CONSTRAINT `projectId_fk` FOREIGN KEY (`project_id`) REFERENCES `project` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
- ) ENGINE=InnoDB DEFAULT CHARSET=latin1
+ ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1
  
  CREATE TABLE `user_skills` (
-  `id` INT(11) NOT NULL,
+  `id` INT(11) NOT NULL AUTO_INCREMENT,
   `user_id` INT(11) NULL,
   `skill_id` INT(11) NULL,
   PRIMARY KEY (`id`),
@@ -87,3 +97,14 @@ CREATE TABLE `user_project` (
     ON DELETE NO ACTION
     ON UPDATE NO ACTION);
 
+    
+    CREATE TABLE `notification` (
+   `id` bigint(20) NOT NULL AUTO_INCREMENT,
+   `description` varchar(45) NOT NULL,
+   `user_id` int(11) NOT NULL,
+   `seen` tinyint(1) NOT NULL DEFAULT '0',
+   `created_date` datetime DEFAULT CURRENT_TIMESTAMP,
+   PRIMARY KEY (`id`),
+   KEY `ufk_idx` (`user_id`),
+   CONSTRAINT `ufk` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+ ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1
