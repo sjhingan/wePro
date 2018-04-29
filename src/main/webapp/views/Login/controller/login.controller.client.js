@@ -15,7 +15,7 @@
 
                 if (response.data!= -1) {
                     alert('Login successful');
-                    $location.url("/dashboard");
+                    $location.url("/home");
 
                     //('#!/home');
                     // $location.path('/login');
