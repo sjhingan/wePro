@@ -6,6 +6,7 @@ import java.util.logging.Logger;
 
 import javax.mail.internet.MimeMessage;
 
+import com.ip.wePro.project.Project;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
@@ -41,10 +42,10 @@ public class NotificationService {
      * @throws InterruptedException
      */
 	@Async
-    public void sendNotificationForProject(List<Integer> skills) throws InterruptedException {
-        logger.info("sendNotificationForProject: " + skills);
+    public void sendNotificationForProject(Project project) throws InterruptedException {
+        /*logger.info("sendNotificationForProject: " + skills);
         List<User> userList = userSkillsService.getUsersWithSkills(skills);
-        
+
         for(User user : userList){
         	try {
 				sendEmail(user.getEmail());
@@ -59,7 +60,7 @@ public class NotificationService {
 				e.printStackTrace();
 				logger.log(Level.SEVERE, "Error occured while sending email to user: "+ user.getEmail());;
 			}
-        }
+        }*/
     }
     
 	/**

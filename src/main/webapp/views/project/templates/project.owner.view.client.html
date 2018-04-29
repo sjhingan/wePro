@@ -1,12 +1,9 @@
 <div>
-    <button type="button" class="btn btn-outline-primary" data-toggle="modal" data-target="#addProject">Launch modal</button>
-    <!--<button type="button" class="btn btn-outline-primary pull-right" ng-click="model.createProject()">-->
-        <!--Add Project-->
-    <!--</button>-->
+    <button type="button" class="btn btn-outline-primary" data-toggle="modal" data-target="#addProject">Add Project</button>
 </div>
 
 <div ng-repeat="project in model.getOwnerProjectsList">
-    <div class="card mb-3 col-sm-10">
+    <div class="card mb-3 mr-3 ml-3 mt-3">
         <div class="card-header">
             <div class="row">
                 <div class="col-11"><a ng-click="model.ownerIndividualProjectPage(project)" href="">{{project.name}}</a></div>
@@ -15,10 +12,9 @@
         </div>
         <div class="card-body">
             <p class="card-text">{{project.description.substring(0,project.description.length > 277 ? 277 : project.description.length).concat("...")}}</p>
-            <button type="button" ng-show='"{{project.assessmentId}}" != 0 ? true : false' class="btn btn-outline-info">Update Assessment</button>
             <button type="button" ng-show='"{{project.assessmentRequired}}" == "Yes" ? true : false' class="btn btn-outline-warning">Create Assessment</button>
             <button type="button" ng-click="model.editProject(project)" class="btn btn-outline-secondary">Edit</button>
-            <button type="button" ng-click="model.deleteProjectPrompt(project)" class="btn btn-outline-danger">Delete</button>
+            <button type="button" ng-show='"{{project.statusId}}" != 3 && "{{project.statusId}}" != 4' ng-click="model.deleteProjectPrompt(project)" class="btn btn-outline-danger">Delete</button>
         </div>
         <div class="card-footer text-muted">
             <div class="row">
@@ -171,7 +167,7 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary" ng-click="model.addProject(model.project)">Save</button>
+                <button type="button" class="btn btn-primary" ng-click="model.updateProject(model.editingProject)">Save</button>
             </div>
         </div>
     </div>
