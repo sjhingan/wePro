@@ -10,7 +10,6 @@
                 controller: "TopicController",
                 controllerAs: "model"
             })
-
             .when("/mhire", {
                 templateUrl: "views/ManagerHireAssess/templates/ManagerHireAssess.view.client.html",
                 controller: "ManagerHireAssess",

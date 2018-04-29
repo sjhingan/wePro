@@ -34,6 +34,10 @@ public class User {
 
     protected User(){}
 
+    public User(int id){
+        this.id = id;
+    }
+
     public int getId() {
         return id;
     }

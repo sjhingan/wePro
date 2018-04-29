@@ -67,7 +67,7 @@ public class ProjectController {
          projectService.addProject(project);
     }
 
-    @GetMapping("/getproj/{id}")
+    @GetMapping("/get/{id}")
     public Project getProjectById(@PathVariable int id){
         return projectService.getProject(id);
     }

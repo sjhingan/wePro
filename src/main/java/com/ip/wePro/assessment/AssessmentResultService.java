@@ -6,6 +6,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import com.ip.wePro.User.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -17,7 +18,7 @@ public class AssessmentResultService {
 	@Autowired
 	AssessmentRepository assessmentRepository;
 
-	public void addResult(AssessmentSubmission submittedAssessment , String userId) {
+	public void addResult(AssessmentSubmission submittedAssessment , int userId) {
 				
 		Map<Integer,Integer> CorrectSolution = new HashMap<Integer,Integer>();
 		Map<Integer,Integer> marksMap = new HashMap<Integer,Integer>();
@@ -70,7 +71,8 @@ public class AssessmentResultService {
 		 * Now, Creating an object of AssessmentResult & will save the record in the DB.
 		 * This record will serve as, assessment submitted by the user & we are  storing his result.
 		 */
-		AssessmentResult resultObject = new AssessmentResult(new ProjectAssessmentMappingForResultSubmission(userId, assessmentId), finalMarks);
+
+		AssessmentResult resultObject = new AssessmentResult(new ProjectAssessmentMappingForResultSubmission(new User(userId), assessmentId), finalMarks);
 		
 		assessmentResultRepository.save(resultObject);		
 	}

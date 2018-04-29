@@ -1,15 +1,20 @@
 package com.ip.wePro.assessment;
 
+import com.ip.wePro.User.User;
+
 import java.io.Serializable;
 
 import javax.persistence.Embeddable;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 import javax.validation.constraints.NotNull;
 
 @Embeddable
 public class ProjectAssessmentMappingForResultSubmission implements Serializable{
-	
-	@NotNull
-	private String userId;
+
+	@OneToOne
+	@JoinColumn(name="user_id")
+	private User user;
 	
 	@NotNull
 	private String assessmentId;
@@ -19,18 +24,18 @@ public class ProjectAssessmentMappingForResultSubmission implements Serializable
 		
 	}
 
-	public ProjectAssessmentMappingForResultSubmission(@NotNull String userId, @NotNull String assessmentId) {
+	public ProjectAssessmentMappingForResultSubmission(@NotNull User user, @NotNull String assessmentId) {
 		super();
-		this.userId = userId;
+		this.user = user;
 		this.assessmentId = assessmentId;
 	}
 
-	public String getUserId() {
-		return userId;
+	public User getUser() {
+		return user;
 	}
 
-	public void setUserId(String userId) {
-		this.userId = userId;
+	public void setUser(User user) {
+		this.user = user;
 	}
 
 	public String getAssessmentId() {

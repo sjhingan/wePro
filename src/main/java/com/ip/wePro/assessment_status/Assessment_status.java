@@ -1,5 +1,7 @@
 package com.ip.wePro.assessment_status;
 
+import com.ip.wePro.User.User;
+
 import javax.persistence.*;
 
 @Entity
@@ -8,7 +10,9 @@ public class Assessment_status {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-    private int uid;
+    @OneToOne
+    @JoinColumn(name = "user_id")
+    private User user;
     @Column(name = "project_id")
     private int projectId;
 
@@ -20,8 +24,8 @@ public class Assessment_status {
     }
 
 
-    public Assessment_status(int uid, int projectId, String assesmentStatus) {
-        this.uid = uid;
+    public Assessment_status(User user, int projectId, String assesmentStatus) {
+        this.user = user;
         this.projectId = projectId;
         this.assesmentStatus = assesmentStatus;
     }
@@ -33,12 +37,12 @@ public class Assessment_status {
     public void setId(int id) {
         this.id = id;
     }
-    public int getUid() {
-        return uid;
+    public User getUser() {
+        return user;
     }
 
-    public void setUid(int uid) {
-        this.uid = uid;
+    public void setUser(User user) {
+        this.user = user;
     }
 
     public int getProjectId() {

@@ -21,7 +21,6 @@
                     if(vm.project.assessmentRequired == "Yes"){
                         loadApplicantsResult(vm.project.assessmentId);
                     }else{
-                        console.log("loadAppliedApplicants");
                         loadAppliedApplicants(vm.project.id);
                     }
                     getProjectDevelopers();
@@ -35,6 +34,7 @@
                 .then(function (applicants) {
                     vm.applicantsResult = applicants.data;
                     console.log(vm.applicantsResult);
+                    removeHired();
                 });
         }
         
@@ -47,24 +47,29 @@
         }
 
         function confirmHire(user) {
-            console.log(user);
             vm.hire = user;
-            vm.hire.name = user.projectAssessmentMappingForResultSubmission.userId;
+            vm.hire.name = user.projectAssessmentMappingForResultSubmission.user.firstname;
             $('#hireModal').modal('show');
         }
 
         function saveHire(user) {
+            saveHireToDB(user);
+
+        }
+
+        function saveHireToDB(user) {
             var userProject = new Object();
-            userProject.user_id = user.projectAssessmentMappingForResultSubmission.userId;
+            userProject.user_id = user.projectAssessmentMappingForResultSubmission.user.id;
             userProject.active = 1;
             userProject.project = vm.project;
             console.log(userProject);
             OpenProjectService.addUserToProject(userProject)
                 .then(function (status) {
-
+                    vm.applicantsResult.splice(vm.applicantsResult.indexOf(user),1);
+                    init();
                 });
             $('#hireModal').modal('hide');
-            getProjectDevelopers();
+            removeHired();
         }
         
         function getProjectDevelopers() {
@@ -76,6 +81,20 @@
                     elem.style.width = calWidth + '%';
                 });
 
+        }
+
+        function removeHired(){
+            var removeData = [];
+            for(var i=0; i<vm.applicantsResult.length; i++){
+                for(var j=0; j<vm.hiredUsers.length; j++){
+                    if(vm.applicantsResult[i].projectAssessmentMappingForResultSubmission.user.id == vm.hiredUsers[j].user_id){
+                        removeData.push(vm.applicantsResult[i]);
+                    }
+                }
+            }
+            for(var i=0; i<removeData.length; i++){
+                vm.applicantsResult.splice(removeData[i],1);
+            }
         }
     }
 

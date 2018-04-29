@@ -22,7 +22,7 @@ public class AssessmentResultController {
 	/* This method will get the assessment submitted by developer. Then it will calculate the result for individual.
 	 * Then userId,assessmentId,Result will be saved to assessmentResult table. */
 	@PostMapping("/add/{userId}")
-	public void addResult(@RequestBody AssessmentSubmission submittedAssessment,@PathVariable String userId)
+	public void addResult(@RequestBody AssessmentSubmission submittedAssessment,@PathVariable int userId)
 	{
 		assessmentResultService.addResult(submittedAssessment,userId);		
 	}

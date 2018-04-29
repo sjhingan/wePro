@@ -37,6 +37,7 @@
         }
 
         function getUsersByProjectId(projectId) {
+            console.log(projectId);
             return $http.get("/project/userprojects/getusers/" + projectId);
         }
     }
