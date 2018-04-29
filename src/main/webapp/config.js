@@ -6,8 +6,8 @@
     function configuration($routeProvider) {
         $routeProvider
             .when("/", {
-                templateUrl: "views/topic/templates/topic.view.client.html",
-                controller: "TopicController",
+                templateUrl: "views/home/templates/dashboard.html",
+                controller: "DashboardController",
                 controllerAs: "model"
             })
             .when("/mhire", {
