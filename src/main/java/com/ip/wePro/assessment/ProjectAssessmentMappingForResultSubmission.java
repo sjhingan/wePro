@@ -1,3 +1,4 @@
+
 package com.ip.wePro.assessment;
 
 import java.io.Serializable;
@@ -9,7 +10,7 @@ import javax.validation.constraints.NotNull;
 public class ProjectAssessmentMappingForResultSubmission implements Serializable{
 	
 	@NotNull
-	private String userId;
+	private int userId;
 	
 	@NotNull
 	private String assessmentId;
@@ -19,17 +20,17 @@ public class ProjectAssessmentMappingForResultSubmission implements Serializable
 		
 	}
 
-	public ProjectAssessmentMappingForResultSubmission(@NotNull String userId, @NotNull String assessmentId) {
+	public ProjectAssessmentMappingForResultSubmission(@NotNull int userId, @NotNull String assessmentId) {
 		super();
 		this.userId = userId;
 		this.assessmentId = assessmentId;
 	}
 
-	public String getUserId() {
+	public int getUserId() {
 		return userId;
 	}
 
-	public void setUserId(String userId) {
+	public void setUserId(int userId) {
 		this.userId = userId;
 	}
 
