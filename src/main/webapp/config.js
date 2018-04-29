@@ -33,7 +33,7 @@
                 controllerAs: "model"
             })
             .when("/home", {
-                templateUrl: "views/Home/templates/home.view.html",
+                templateUrl: "views/home/templates/dashboard.html",
                 controller: "HomeController",
                 controllerAs: "model"
             })
