@@ -20,7 +20,7 @@ public class UserSkills {
     private int id;
 	
     @Column(name = "user_id")
-    private Long user_id;
+    private Integer user_id;
     
     @OneToOne
     @JoinColumn(name = "skill_id")
@@ -34,11 +34,11 @@ public class UserSkills {
 		this.id = id;
 	}
 
-	public Long getUser_id() {
+	public Integer getUser_id() {
 		return user_id;
 	}
 
-	public void setUser_id(Long user_id) {
+	public void setUser_id(Integer user_id) {
 		this.user_id = user_id;
 	}
 

@@ -70,17 +70,17 @@ CREATE TABLE `assessment_result` (
  )
 
 CREATE TABLE `user_project` (
-   `id` bigint(20) NOT NULL,
+   `id` bigint(20) NOT NULL AUTO_INCREMENT,
    `user_id` bigint(20) NOT NULL,
    `project_id` int(11) NOT NULL,
    `active` tinyint(1) NOT NULL DEFAULT '0',
    PRIMARY KEY (`id`),
    KEY `projectId_fk_idx` (`project_id`),
    CONSTRAINT `projectId_fk` FOREIGN KEY (`project_id`) REFERENCES `project` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
- ) ENGINE=InnoDB DEFAULT CHARSET=latin1
+ ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1
  
  CREATE TABLE `user_skills` (
-  `id` INT(11) NOT NULL,
+  `id` INT(11) NOT NULL AUTO_INCREMENT,
   `user_id` INT(11) NULL,
   `skill_id` INT(11) NULL,
   PRIMARY KEY (`id`),
@@ -97,3 +97,14 @@ CREATE TABLE `user_project` (
     ON DELETE NO ACTION
     ON UPDATE NO ACTION);
 
+    
+    CREATE TABLE `notification` (
+   `id` bigint(20) NOT NULL AUTO_INCREMENT,
+   `description` varchar(45) NOT NULL,
+   `user_id` int(11) NOT NULL,
+   `seen` tinyint(1) NOT NULL DEFAULT '0',
+   `created_date` datetime DEFAULT CURRENT_TIMESTAMP,
+   PRIMARY KEY (`id`),
+   KEY `ufk_idx` (`user_id`),
+   CONSTRAINT `ufk` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+ ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1

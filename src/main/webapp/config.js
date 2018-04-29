@@ -42,6 +42,21 @@
                 controller: "RegisterController",
                 controllerAs: "model"
             })
+            .when("/notifications", {
+                templateUrl: "views/notification/templates/notification.html",
+                controller: "NotificationController",
+                controllerAs: "model"
+            })
+            .when("/project/userprojects/:uid", {
+                templateUrl: "views/project/templates/UserOpenProjects.html",
+                controller: "UserOpenProjects",
+                controllerAs: "model"
+            })
+            .when("/project/userprojects/history/:uid", {
+                templateUrl: "views/project/templates/UserClosedProjects.html",
+                controller: "UserClosedProjects",
+                controllerAs: "model"
+            })
             .otherwise({
                 redirectTo: "/login"
             });

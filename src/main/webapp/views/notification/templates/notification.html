@@ -1,0 +1,29 @@
+<h1>Notifications</h1>
+
+<div ng-controller="NotificationController as nc">
+	<div class="panel-body">
+		<table class="table table-bordered bordered table-striped table-condensed datatable" ui-jq="dataTable" ui-options="dataTableOpt">
+			<thead>
+				<tr>
+					<th>Description</th>
+					<th>Action</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr ng-repeat="notification in nc.notificationList">
+					<td>{{notification.description}}</td>
+					<td ng-if='notification.seen != true'><button ng-click="nc.markRead(notification.id)">Mark As Seen</button><button ng-click="nc.deleteNotification(notification.id)">Delete</button></td>
+					<td ng-if="notification.seen != false"><button ng-click="nc.deleteNotification(notification.id)">Delete</button></td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+</div>
+<style>
+	table tr th{
+	  background:#337ab7;
+	  color:white;
+	  text-align:left;
+	  vertical-align:center;
+	}
+</style>

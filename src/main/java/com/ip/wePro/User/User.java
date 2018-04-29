@@ -1,7 +1,8 @@
 package com.ip.wePro.User;
 
-import javax.persistence.*;
 import java.util.Set;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -29,7 +30,7 @@ public class User {
     private String occupation;
     private String experience;
     private String description;
-    @OneToMany(mappedBy="user_id")
+    @OneToMany(mappedBy="user_id", cascade = CascadeType.ALL)
     Set<UserSkills> userSkills;
 
     protected User(){}

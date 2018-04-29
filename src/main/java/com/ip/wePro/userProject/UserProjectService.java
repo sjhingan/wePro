@@ -20,7 +20,7 @@ public class UserProjectService {
     private static final Logger LOGGER = Logger.getLogger("UserProjectService");
     
     public List<Project> getOpenProjectsOfUser(Long userId) {
-    	LOGGER.info("***************************inside method getOpenProjectsOfUser()**********************************");
+    	LOGGER.info("**inside method getOpenProjectsOfUser()**");
         List<UserProject> userProjects = userProjectRepository.findOpenProjectsByUserId(userId);
         List<Project> results = new ArrayList<Project>();
         for(UserProject u: userProjects){
@@ -31,7 +31,7 @@ public class UserProjectService {
     }
 
 	public List<Project> getClosedProjectsByUserId(Long userId) {
-		LOGGER.info("***************************inside method getClosedProjectsByUserId()**********************************");
+		LOGGER.info("**inside method getClosedProjectsByUserId()**");
 		List<UserProject> userProjects = userProjectRepository.findClosedProjectsByUserId(userId);
 		List<Project> results = new ArrayList<Project>();
         for(UserProject u: userProjects){

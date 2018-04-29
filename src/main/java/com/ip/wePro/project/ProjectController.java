@@ -3,6 +3,8 @@ package com.ip.wePro.project;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import com.ip.wePro.userProject.UserProjectService;
+
 import java.util.List;
 
 @RestController
@@ -11,6 +13,9 @@ public class ProjectController {
 
     @Autowired
     ProjectService projectService;
+    
+    @Autowired
+    UserProjectService userProjectService;
 
     @GetMapping("/get/all")
     public List<Project> getAllProjects(){
@@ -51,5 +56,26 @@ public class ProjectController {
     @GetMapping("/get/{uid}")
     public List<Project> getAllProjectsByOwner(@PathVariable int uid, @PathVariable String status){
         return projectService.getAllProjectsByStatusIdAndOwner(uid, ProjectStatus.valueOf(status.toUpperCase()).value());
+    }
+    
+    /**
+     * Fetch all the project details mapped to the user working on it.
+     * @param uid
+     * @param status
+     * @return
+     */
+    @GetMapping("/userprojects/{uid}")
+    public List<Project> getOpenProjectsOfUser(@PathVariable Long uid){
+        return userProjectService.getOpenProjectsOfUser(uid);
+    }
+    
+    /**
+     * Fetch all the closed projects for a user
+     * @param userId
+     * @return
+     */
+    @GetMapping("/userprojects/history/{uid}")
+    public List<Project> getClosedProjectsByUserId(@PathVariable Long uid){
+        return userProjectService.getClosedProjectsByUserId(uid);
     }
 }
