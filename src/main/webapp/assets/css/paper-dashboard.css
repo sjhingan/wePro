@@ -107,7 +107,7 @@ blockquote small {
 .glyphicon {
   line-height: 1; }
 
-strong {
+		strong {
   color: #403D39; }
 
 .icon-primary {
@@ -139,7 +139,7 @@ strong {
 /*     General overwrite     */
 body {
   color: #66615b;
-  font-size: 14px;
+		  font-size: 14px;
   font-family: 'Muli', Arial, sans-serif; }
   body .wrapper {
     min-height: 100vh;
@@ -1639,7 +1639,9 @@ textarea.form-control {
   line-height: 1; }
 
 .ct-chart-line .ct-label,
+
 .ct-chart-bar .ct-label{
+
   display: block;
   display: -webkit-box;
   display: -moz-box;
