@@ -15,7 +15,7 @@
         function create(user){
 
             console.log(user);
-            return $http.post("login/register",user);
+            return $http.post("userprofile/register",user);
 
         }
 
