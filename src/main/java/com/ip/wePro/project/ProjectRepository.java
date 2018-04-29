@@ -18,7 +18,7 @@ public interface ProjectRepository extends JpaRepository<Project, Integer>, Pagi
     Page<Project> findAllByStatusIdAndOwner(@Param("status") int status, @Param("owner") int owner, Pageable pageable);
 
 //    @Query("select p from Project p where p.statusId = :status")
-    Page<Project> findAllByStatusIdAndDueDateGreaterThanEqualAndIdNotIn(@Param("status") int status, Date date, List<Integer> appliedProjectIds,Pageable pageable);
+    Page<Project> findAllByStatusIdAndDueDateGreaterThanEqualAndIdNotIn(@Param("status") int status, @Param("date") Date date, @Param("appliedProjectIds") List<Integer> appliedProjectIds,Pageable pageable);
 
 //    @Query("select p from Project p where p.owner = :owner")
     Page<Project> findAllByOwner(@Param("owner") int owner, Pageable pageable);
