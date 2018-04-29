@@ -11,7 +11,7 @@
         return api;
         function loginuser(user){
             //console.log(user.password);
-            return $http.get("login/checkuser/"+user.email+"/"+user.password);
+            return $http.get("userprofile/checkuser/"+user.email+"/"+user.password);
         }
     }
 
