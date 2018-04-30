@@ -3,30 +3,11 @@
         .module("weProApp")
         .controller("TopicController",topicController);
 
-    function topicController(TopicService) {
-        var vm = this;
-        vm.addTopic = addTopic;
+    function topicController() {
 
-        function init() {
-            vm.topics = undefined;
-            loadAllTopics();
+            var vm = this;
+            // vm.login = login;
+
         }
 
-        init();
-
-        function loadAllTopics() {
-            TopicService.getAllTopics()
-                .then(function (topics) {
-                    vm.topics = topics.data;
-                });
-        }
-        
-        function addTopic(topic) {
-            console.log(topic);
-            TopicService.addTopic(topic)
-                .then(function (status) {
-                    init();
-                });
-        }
-    }
 })();
