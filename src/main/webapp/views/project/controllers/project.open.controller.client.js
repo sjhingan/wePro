@@ -24,12 +24,12 @@
 
         function applyJob(project) {
             var assessment = new Object();
-            assessment.uid = vm.uid;
-            assessment.projectId = project.id;
+            assessment.user = { "id" : vm.uid};
+            assessment.project = {"id" : project.id};
             if(project.assessmentRequired == "Yes"){
                 assessment.assesmentStatus = "Pending";
             }else{
-                assessment.assesmentStatus = "N/A";
+                assessment.assesmentStatus = "NA";
             }
 
             AssessmentStatusService.applyToProject(assessment)

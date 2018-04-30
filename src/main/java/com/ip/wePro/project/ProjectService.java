@@ -43,12 +43,12 @@ public class ProjectService {
         }
         projectRepository.save(project);
 
-        try {
-            notificationService.sendNotificationForProject(project);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-            logger.log(Level.SEVERE, "Error in sending notification for matching skills: ");
-        }
+//        try {
+//            notificationService.sendNotificationForProject(project);
+//        } catch (InterruptedException e) {
+//            e.printStackTrace();
+//            logger.log(Level.SEVERE, "Error in sending notification for matching skills: ");
+//        }
     }
 
     public Project getProject(int id) {
