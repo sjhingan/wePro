@@ -1,6 +1,4 @@
 <h1>Update Profile</h1>
-<label>UserId</label>
-<input ng-model="profile.id" class="form-control" placeholder={{model.oldprofile.id}}>
 
 <label>Email id</label>
 <input ng-model="profile.email" class="form-control" placeholder={{model.oldprofile.email}}>
@@ -12,10 +10,6 @@
 
 <label>Last Name</label>
 <input ng-model="profile.lastname" class="form-control" placeholder={{model.oldprofile.lastname}}>
-
-
-<label>Password</label>
-<input ng-model="profile.password" class="form-control" placeholder= {{model.oldprofile.password}}>
 
 
 <label>Date Of Birth</label>
@@ -42,5 +36,5 @@
 <label>Description</label>
 <input ng-model="profile.description" class="form-control" placeholder= {{model.oldprofile.description}}>
 
-<button ng-click="model.updateProfile(profile)" class="btn btn-primary btn-block">Update</button>
+<button ng-click="model.updateProfile(profile)" class="btn btn-primary btn-block" >Update</button>
 
