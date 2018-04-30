@@ -3,7 +3,9 @@
         .module("weProApp")
         .controller("DashboardController", DashboardController);
 
-    function DashboardController() {
+    function DashboardController($routeParams) {
+        var vm = this;
+        vm.uid = $routeParams['uid'];
     }
 
 })();

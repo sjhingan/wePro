@@ -6,6 +6,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import java.util.Date;
 
 @Entity
 @Table(name="notification")
@@ -23,6 +24,10 @@ public class Notification {
 	
 	@Column(name = "seen")
 	private Boolean seen;
+
+	@Column(name = "created_date")
+	private Date createDate;
+
 
 	public Long getId() {
 		return id;
@@ -54,6 +59,14 @@ public class Notification {
 
 	public void setSeen(Boolean seen) {
 		this.seen = seen;
+	}
+
+	public Date getCreateDate() {
+		return createDate;
+	}
+
+	public void setCreateDate(Date createDate) {
+		this.createDate = createDate;
 	}
 
 	@Override

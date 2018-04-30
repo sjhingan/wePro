@@ -71,7 +71,7 @@
                   controller: "SetProfileController",
                   controllerAs: "model"
              })
-            .when("/dashboard", {
+            .when("/dashboard/:uid", {
                 templateUrl: "views/home/templates/dashboard.html",
                 controller: "DashboardController",
                 controllerAs: "model"
