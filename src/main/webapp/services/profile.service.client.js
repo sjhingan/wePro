@@ -10,7 +10,8 @@
             addTopic : addTopic,
             updateProfile : updateProfile,
             getProfile : getProfile,
-            getAllSkills : getAllSkills
+            getAllSkills : getAllSkills,
+            updateSkills : updateSkills
         }
 
         return api;
@@ -22,15 +23,17 @@
         function addTopic(topic) {
             return $http.post("/topics",topic);
         }
-        function updateProfile(profile) {
-            return $http.put("/userprofile/updateProfile/"+1,profile);
+        function updateProfile(profile, userId) {
+            return $http.put("/userprofile/updateProfile/"+userId,profile);
         }
         function getProfile(userId){
-            return $http.get("/userprofile/getprofile/"+1);
+            return $http.get("/userprofile/getprofile/"+userId);
         }
         function getAllSkills() {
                     return $http.get("/skills/all");
         }
-
+        function updateSkills(uid,skills){
+            return $http.post("/userprofile/update/skills/"+uid, skills);
+        }
     }
 })();

@@ -1,40 +1,84 @@
-<h1>Update Profile</h1>
+<h3 class="text-left" >Update Profile</h3>
 
-<label>Email id</label>
-<input ng-model="profile.email" class="form-control" placeholder={{model.oldprofile.email}}>
+<div>
+    <div class="form-group">
+        <label class="col-2">Email id     </label>
+        <input ng-model="profile.email" class="col-3" type="text" placeholder ={{model.oldprofile.email}}>
+    </div>
+</div>
+<div>
+    <div class="form-group">
+<label class="col-2">First Name</label>
+<input ng-model="profile.firstname" class="col-3"  placeholder={{model.oldprofile.firstname}}>
+    </div>
+</div>
+<div>
+    <div class="form-group">
+<label class="col-2" >Last Name</label>
+<input ng-model="profile.lastname" class="col-3" placeholder={{model.oldprofile.lastname}}>
+    </div>
+</div>
+
+<div>
+    <div class="form-group">
+<label class="col-2">Date Of Birth</label>
+<input ng-model="profile.dob" class="col-3" placeholder= {{model.oldprofile.dob}}>
+    </div>
+</div>
+
+<div>
+    <div class="form-group">
+<label class="col-2">Gender</label>
+<input ng-model="profile.gender" class="col-3" placeholder= {{model.oldprofile.gender}}>
+    </div>
+</div>
+
+<div >
+    <div class="form-group">
+<label class="col-2">Address</label>
+<input ng-model="profile.address" class="col-3" placeholder= {{model.oldprofile.address}}></input>
+    </div>
+</div>
+<div >
+    <div class="form-group">
+<label class="col-2">Phone</label>
+<input ng-model="profile.phone" class="col-3" placeholder= {{model.oldprofile.phone}}>
+    </div>
+</div>
+<div >
+
+    <div class="form-group" id="skillsbox">
+    <style>
+        label,select{
+            vertical-align:middle;
+        }
+     </style>
+    <label class="col-2" for="projectSkills">Select Skills</label>
+    <select multiple class="col-3" id="projectSkills" required="" ng-model="model.selectedSkills">
+        <option ng-repeat="each in model.allSkills" ng-selected=model.allSkills.id==model.userSkills.id value="{{each}}">{{each.name}}</option>
+
+         <option ng-selected="u.selected" ng-repeat="each in model.allSkills" value="{{model.userSkills.id}}={{model.allSkills.id}}"></option>
+
+    </select>
+    </div>
+</div>
 
 
-<label>First Name</label>
-<input ng-model="profile.firstname" class="form-control" placeholder={{model.oldprofile.firstname}}>
+<div>
+<label class="col-2">Occupation</label>
+<input ng-model="profile.occupation" class="col-3" placeholder= {{model.oldprofile.occupation}}>
+</div>
 
+<div>
+<label class="col-2">Experience</label>
+<input ng-model="profile.experience" class="col-3" placeholder= {{model.oldprofile.experience}}></input>
+</div>
 
-<label>Last Name</label>
-<input ng-model="profile.lastname" class="form-control" placeholder={{model.oldprofile.lastname}}>
+<div>
+<label class="col-2">Description</label>
+<input ng-model="profile.description" class="col-3" placeholder= {{model.oldprofile.description}}>
+</div>
 
-
-<label>Date Of Birth</label>
-<input ng-model="profile.dob" class="form-control" placeholder= {{model.oldprofile.dob}}>
-
-
-<label>Gender</label>
-<input ng-model="profile.gender" class="form-control" placeholder= {{model.oldprofile.gender}}>
-
-
-<label>Address</label>
-<textarea ng-model="profile.address" class="form-control" placeholder= {{model.oldprofile.address}}></textarea>
-
-
-<label>Phone</label>
-<textarea ng-model="profile.phone" class="form-control" placeholder= {{model.oldprofile.phone}}></textarea>
-
-<label>Occupation</label>
-<input ng-model="profile.occupation" class="form-control" placeholder= {{model.oldprofile.occupation}}>
-
-<label>Experience</label>
-<textarea ng-model="profile.experience" class="form-control" placeholder= {{model.oldprofile.experience}}></textarea>
-
-<label>Description</label>
-<input ng-model="profile.description" class="form-control" placeholder= {{model.oldprofile.description}}>
-
-<button ng-click="model.updateProfile(profile)" class="btn btn-primary btn-block" >Update</button>
-
+<div class="m-5">
+    <button ng-click="model.updateProfile(profile)" class="btn btn-primary" >Update</button>
+</div>

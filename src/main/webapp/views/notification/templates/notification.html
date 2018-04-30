@@ -1,4 +1,41 @@
+<!-- Bootstrap core CSS     -->
+<link href="/assets/css/bootstrap.min.css" rel="stylesheet" />
+
+<link href="/assets/css/animate.min.css" rel="stylesheet"/>
+
+<link href="/assets/css/paper-dashboard.css" rel="stylesheet"/>
+
+<link href="/assets/css/demo.css" rel="stylesheet" />
+
+<!--     Fonts and icons     -->
+<link href="http://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" rel="stylesheet">
+<link href='https://fonts.googleapis.com/css?family=Muli:400,300' rel='stylesheet' type='text/css'>
+<link href="/assets/css/themify-icons.css" rel="stylesheet">
+
 <h1>Notifications</h1>
+<div class="row" ng-controller="NotificationController as nc">
+	<div class= "col-lg-4 col-md-4 col-sm-4">
+		<div class="container">
+
+			<div >
+				<div ng-repeat="notification in nc.notificationList">
+					<div class="alert alert-info alert-with-icon " data-notify="container" style = "margin-left: 10%; margin-right: 10%" >
+						<button type="button" aria-hidden="true" class="close" ng-click="nc.deleteNotification(notification.id)">x</button>
+						<span data-notify="icon" class="ti-pie-chart"></span>
+						<span data-notify="message">{{notification.description}}</span>
+					</div>
+			</div>
+			</div>
+		</div>
+
+	</div>
+</div>
+
+
+<!--
+=======
+>>>>>>> 0bc28e4123ab3decef1eeb48184b1480caf2004a
+<h1 style="margin-top: 7%;" class="display-4">Notifications</h1>
 
 <div ng-controller="NotificationController as nc">
 	<div class="panel-body">
@@ -26,4 +63,4 @@
 	  text-align:left;
 	  vertical-align:center;
 	}
-</style>
+</style> -->

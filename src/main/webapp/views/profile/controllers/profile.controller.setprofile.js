@@ -12,6 +12,10 @@
         vm.selectedSkills = undefined;
         vm.commonSkills = undefined;
         vm.oldprofile = undefined;
+
+
+        vm.makingObject = undefined;
+
         function init() {
 
              vm.oldprofile = undefined;
@@ -38,11 +42,29 @@
                  profile.id = vm.oldprofile.id;
                  profile.password = vm.oldprofile.password;
 
+                 console.log("Printing Skills Array");
+                 console.log(vm.selectedSkills);
+                 profile.userSkills = vm.selectedSkills;
+                 //profile.userSkills.user_id = profile.id;
 
+                 vm.makingObject = vm.selectedSkills;
+                 vm.makingObject += profile.id;
+
+                profile.userSkills = vm.makingObject;
+
+                var skills = [];
+                for(var i=0; i<vm.selectedSkills.length; i++){
+                    skills.push(vm.selectedSkills[i]);
+                }
+                console.log("Printing Skills Array End");
                  ProfileService.updateProfile(profile).then(function (status) {
-                                                                           init();
+
                                                                        });
-                 $location.url('/profile/viewprofile/'+1);
+                 ProfileService.updateSkills(profile.id, skills)
+                 .then(function(status){
+//                        init();
+                    $location.url('/profile/viewprofile/'+profile.id);
+                 });
              }
 
 

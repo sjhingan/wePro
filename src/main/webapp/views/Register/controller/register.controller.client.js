@@ -13,7 +13,7 @@
             UserService.create(user)
                 .then(function (response) {
                     if (response.data==1) {
-                        alert('Registration successful');
+                        //alert('Registration successful');
                         $location.url("/login");
                         //('#!/login');
                        // $location.path('/login');

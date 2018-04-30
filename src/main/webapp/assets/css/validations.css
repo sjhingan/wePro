@@ -1,0 +1,8 @@
+@import url(https://fonts.googleapis.com/css?family=Open+Sans);
+@import url(https://fonts.googleapis.com/css?family=Merriweather);
+
+.error {
+    background: #FFCDD2 url(error.png) no-repeat 98% center;
+    box-shadow: 0 0 5px #FF5252;
+    border-color: #FF1744;
+}
