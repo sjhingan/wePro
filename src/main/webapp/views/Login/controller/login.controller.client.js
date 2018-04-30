@@ -14,7 +14,7 @@
             AuthenticationService.loginuser(user).then(function (response) {
 
                 if (response.data!= -1) {
-                    alert('Login successful');
+                    //alert('Login successful');
                     $location.url("/home");
 
                     //('#!/home');

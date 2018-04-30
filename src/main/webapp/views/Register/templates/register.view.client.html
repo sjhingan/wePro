@@ -10,18 +10,22 @@
 <div class= "col-lg-4 col-md-4 col-sm-4"></div>
 
 <div class= "col-lg-4 col-md-4 col-sm-4">
-<div class="container">
+<div class="container-fluid">
   <form name="form" ng-submit="model.register(model.user)" role="form">
     <div class="row">
       
       <div class="col">
         <input type="text" name="firstname" id="firstName" class="form-control" ng-model="model.user.firstname" placeholder="First Name" required/>
+        <br/>
         <input type="text" name="lastname" id="Text1" class="form-control" ng-model="model.user.lastname" placeholder="Last Name" required/>
+        <br/>
         <input type="text" name="email" id="email" class="form-control" ng-model="model.user.email" placeholder="emailid@something.com" required>
+        <br/>
         <input type="password" name="password" id="password" class="form-control" ng-model="model.user.password" placeholder="Password" required>
         <br/>
-        <button type="submit" ng-disabled="form.$invalid || model.dataLoading" class="btn" style="background-color:green;color:white;">Register</button>
-        <button type="submit"  class="btn btn-link" style="background-color:grey;color:white;">Cancel</button>
+        <br/>
+        <button type="submit" ng-disabled="form.$invalid || model.dataLoading" class="btn btn-link" style="background-color:green;color:white;">Register</button>
+        <a id="cancel" name="cancel" href="/#/home"  class="btn btn-link" style="background-color:grey;color:white;">Cancel</a>
       </div>
       
     </div>

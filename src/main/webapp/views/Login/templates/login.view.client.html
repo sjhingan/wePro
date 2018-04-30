@@ -7,7 +7,7 @@
 
 <div class= "col-lg-4 col-md-4 col-sm-4">
 <div class="container">
-  <form name="form" ng-submit="model.login(model.user)" role="form">
+  <form name="form" ng-submit="model.login(model.user)" role="form" id="addProject">
     <div class="row">
       <!-- <h2 style="text-align:center">Login with Social Media or Manually</h2> -->
       <!-- <div class="vl">
@@ -31,8 +31,8 @@
           <p>Or sign in manually:</p>
         </div> -->
 
-        <input ng-class="{ 'has-error': form.username.$dirty && form.username.$error.required }" type="text" name="email" id="email" ng-model="model.user.email" placeholder="Username" required>
-        <input ng-class="{ 'has-error': form.password.$dirty && form.password.$error.required } type="password" name="password" id="password" ng-model="model.user.password" placeholder="Password" required>
+        <input ng-class="{ 'has-error': form.username.$dirty && form.username.$error.required }" type="text" name="Email" id="email" ng-model="model.user.email" placeholder="email id" required>
+        <input ng-class="{ 'has-error': form.password.$dirty && form.password.$error.required }"  type="password" name="password" id="password" ng-model="model.user.password" placeholder="Password" required>
         <button type="submit" ng-disabled="form.$invalid || model.dataLoading" class="btn" style="background-color:green;color:white;">Login</button>
       </div>
       
@@ -42,10 +42,12 @@
 
 <div class="bottom-container">
   <div class="row">
-    <div class="col">
+  	<div class="col-lg-4 col-md-4 col-sm-4">
+  	</div>
+    <div class="col-lg-4 col-md-4 col-sm-4">
       <a style="color:white" class="btn">Not a member? </a>
     </div>
-    <div class="col">
+    <div class="col-lg-4 col-md-4 col-sm-4">
       <a href="/#/register" style="color:white" class="btn">Register! </a>
     </div>
   </div>
