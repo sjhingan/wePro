@@ -25,6 +25,18 @@ public class UserSkills {
     @OneToOne
     @JoinColumn(name = "skill_id")
     private Skills skill;
+    
+    @Column(name="deleted")
+    private Boolean removed;
+    
+
+	public Boolean getRemoved() {
+		return removed;
+	}
+
+	public void setRemoved(Boolean removed) {
+		this.removed = removed;
+	}
 
 	public int getId() {
 		return id;

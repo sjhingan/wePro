@@ -10,6 +10,7 @@ create table assessment(
      marks int,
      primary key(question_id)
      );
+     
 create table project(
 	id int not null auto_increment,
 	name varchar(1024) not null,
@@ -23,6 +24,7 @@ create table project(
 	pay int,
 	primary key(id)
 );
+
 CREATE TABLE `user` (
    `id` int(11) NOT NULL AUTO_INCREMENT,
    `email` varchar(255) DEFAULT NULL,
@@ -37,7 +39,7 @@ CREATE TABLE `user` (
    `experience` varchar(255) DEFAULT NULL,
    `description` varchar(700) DEFAULT NULL,
    PRIMARY KEY (`id`)
- ) ENGINE=InnoDB DEFAULT CHARSET=latin1
+ ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 create table skills(
 	id int not null auto_increment,
@@ -67,7 +69,7 @@ CREATE TABLE `assessment_result` (
    PRIMARY KEY (`id`),
    KEY `user_fk_idx` (`uid`),
    CONSTRAINT `user_fk` FOREIGN KEY (`uid`) REFERENCES `user` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
- )
+ );
 
 CREATE TABLE `user_project` (
    `id` bigint(20) NOT NULL AUTO_INCREMENT,
@@ -77,7 +79,7 @@ CREATE TABLE `user_project` (
    PRIMARY KEY (`id`),
    KEY `projectId_fk_idx` (`project_id`),
    CONSTRAINT `projectId_fk` FOREIGN KEY (`project_id`) REFERENCES `project` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
- ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1
+ ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
  
  CREATE TABLE `user_skills` (
   `id` INT(11) NOT NULL AUTO_INCREMENT,
@@ -107,4 +109,4 @@ CREATE TABLE `user_project` (
    PRIMARY KEY (`id`),
    KEY `ufk_idx` (`user_id`),
    CONSTRAINT `ufk` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
- ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1
+ ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;

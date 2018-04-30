@@ -14,7 +14,7 @@
 
         function create(user){
 
-            console.log(user);
+            console.log("service: " + user);
             return $http.post("userprofile/register",user);
 
         }

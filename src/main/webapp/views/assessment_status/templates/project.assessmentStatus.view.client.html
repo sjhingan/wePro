@@ -1,15 +1,17 @@
-<div ng-repeat="assessment in model.getAssessmentStatusPending">
-    <div class="card mb-3 col-sm-10">
-        <div class="card-header ">
-            <a >{{assessment.project.name}}</a>
-        </div>
-        <div class="card-body">
-            <h5 class="card-title">Special title treatment</h5>
-            <p class="card-text">{{assessment.project.dueDate.split('T')[0]}}</p>
-            <button type="button" ng-click="model.taskAssessment(assessment)" class="btn btn-primary">Take Assessment</button>
-        </div>
-        <div class="card-footer text-muted">
-            Assessment Status: {{assessment.assesmentStatus}}
+<div style="margin-top: 7%;">
+    <div ng-repeat="assessment in model.getAssessmentStatusPending">
+        <div class="card mb-3 mr-3 ml-3 mt-3">
+            <div class="card-header ">
+                <a >{{assessment.project.name}}</a>
+            </div>
+            <div class="card-body">
+                <h5 class="card-title">Special title treatment</h5>
+                <p class="card-text">{{assessment.project.dueDate.split('T')[0]}}</p>
+                <button type="button" ng-click="model.taskAssessment(assessment)" class="btn btn-outline-primary">Take Assessment</button>
+            </div>
+            <div class="card-footer text-muted">
+                Assessment Status: {{assessment.assesmentStatus}}
+            </div>
         </div>
     </div>
 </div>

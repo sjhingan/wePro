@@ -96,7 +96,7 @@ public class NotificationService {
 				Notification notification = new Notification();
 				notification.setSeen(false);
 				notification.setUserId(user.getId());
-				String text = "<html><body background='https://drive.google.com/file/d/1CObOseW5YB5esOvo9Dqw9nZ613Nj-5Z0/view?usp=sharing'><h1>Congratulations!!!</h1></br></br> You are hired. Check details regarding your new project named: "+project.getName()+" <body></html>";
+				String text = "Congratulations!!! You are hired. Check details regarding your new project named: "+project.getName();
 				notification.setDescription(text);
 				notificationRepository.save(notification);
 				sendEmail(user.getEmail(), text, "WePro Notification: Congratulations!!!");

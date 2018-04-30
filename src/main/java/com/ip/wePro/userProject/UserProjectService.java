@@ -3,8 +3,10 @@ package com.ip.wePro.userProject;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import com.ip.wePro.Notification.NotificationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -16,6 +18,9 @@ public class UserProjectService {
 
     @Autowired
     UserProjectRepository userProjectRepository;
+
+    @Autowired
+    NotificationService notificationService;
     
     private static final Logger LOGGER = Logger.getLogger("UserProjectService");
     
@@ -43,6 +48,12 @@ public class UserProjectService {
 
     public void addUserToProject(UserProject userProject) {
         userProjectRepository.save(userProject);
+        try {
+            notificationService.sendNotificationForUserHire(userProject);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+            LOGGER.log(Level.SEVERE,"Failed to send notification when user hired");
+        }
     }
 
     public List<UserProject> findAllByProjectId(int projectId){

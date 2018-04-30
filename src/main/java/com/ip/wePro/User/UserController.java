@@ -1,10 +1,16 @@
 package com.ip.wePro.User;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import com.ip.wePro.skills.Skills;
+
 import org.springframework.web.bind.annotation.*;
 
 
@@ -38,6 +44,23 @@ public class UserController {
     public int checkuser(@PathVariable String email,@PathVariable String password )
     {
         return userService.validateUser(email,password);
+    }
+    
+    @PostMapping("/update/skills/{uid}")
+    public int updateUserSkills(@RequestBody List<Skills> skills, @PathVariable Integer uid)
+    {
+        return userService.updateUserSkills(skills, uid);
+    }
+    
+    @GetMapping("/checkSkills/{uid}")
+    public int checkSkills(@PathVariable Integer uid)
+    {
+    	Skills skills = new Skills();
+    	skills.setName("JAVA");
+    	skills.setId(1);
+    	List<Skills> l = new ArrayList<>();
+    	l.add(skills);
+        return userService.updateUserSkills(l, uid);
     }
 
 }
