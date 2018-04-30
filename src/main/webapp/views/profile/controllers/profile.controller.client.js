@@ -2,7 +2,7 @@
     angular
         .module("weProApp")
         .controller("UserProfileController", userProfileController);
-    function userProfileController(ProfileService) {
+    function userProfileController(ProfileService, $location) {
         var vm = this;
         vm.allSkills = undefined;
         vm.userSkillsDetailedArray = undefined;
@@ -50,6 +50,10 @@
 
                             });
                  }
+         this.editProfile = function editProfile(user){
+        	 console.log(user)
+        	 $location.url('/profile/setprofile/'+user.id);
+         }
     }
 
 })();

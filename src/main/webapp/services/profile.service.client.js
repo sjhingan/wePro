@@ -23,11 +23,11 @@
         function addTopic(topic) {
             return $http.post("/topics",topic);
         }
-        function updateProfile(profile) {
-            return $http.put("/userprofile/updateProfile/"+1,profile);
+        function updateProfile(profile, userId) {
+            return $http.put("/userprofile/updateProfile/"+userId,profile);
         }
         function getProfile(userId){
-            return $http.get("/userprofile/getprofile/"+1);
+            return $http.get("/userprofile/getprofile/"+userId);
         }
         function getAllSkills() {
                     return $http.get("/skills/all");

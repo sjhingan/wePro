@@ -1,53 +1,57 @@
-
+<style>
+.row{
+	padding: 5px;
+}
+</style>
 <!-- <div ng-repeat="profile in model.getUserProfile"> -->
-    <div class="w3-container" >
+    <div ng-controller="UserProfileController as nc" style="margin-top: 10%;margin-left: 27%;width:50%;" class="w3-container" >
 
         <h3 >Welcome <a >{{model.profile.firstname + " "+ model.profile.lastname}}</a></h3>
         <br>
         <br>
         <div class="row">
-            <h5 class="col-2">Date Of Birth</h5>
-            <p class="col-2">{{model.profile.dob}}</p>
+            <h5 class="col-4">Date Of Birth</h5>
+            <p class="col-4">{{model.profile.dob}}</p>
         </div>
 
         <div class="row">
-            <h5 class="col-2">Gender</h5>
-            <p class="col-2">{{model.profile.gender}}</p>
+            <h5 class="col-4">Gender</h5>
+            <p class="col-4">{{model.profile.gender}}</p>
         </div>
 
         <div class="row">
-            <h5 class="col-2">Address</h5>
-            <p class="col-2">{{model.profile.address}}</p>
+            <h5 class="col-4">Address</h5>
+            <p class="col-4">{{model.profile.address}}</p>
         </div>
 
          <div class="row">
-            <h5 class="col-2" for="projectSkills">Skills</h5>
-             <p class="col-2" >{{model.userSkills}}</p>
+            <h5 class="col-4" for="projectSkills">Skills</h5>
+             <p class="col-4" >{{model.userSkills}}</p>
 
          </div>
 
         <div class="row">
-            <h5 class="col-2">Email</h5>
-            <p class="col-2">{{model.profile.email}}</p>
+            <h5 class="col-4">Email</h5>
+            <p class="col-4">{{model.profile.email}}</p>
         </div>
 
         <div class="row">
-            <h5 class="col-2">Phone Number</h5>
-            <p class="col-2">{{model.profile.phone}}</p>
+            <h5 class="col-4">Phone Number</h5>
+            <p class="col-4">{{model.profile.phone}}</p>
         </div>
 
         <div class="row">
-            <h5 class="col-2">Occupation</h5>
-            <p class="col-2">{{model.profile.occupation}}</p>
+            <h5 class="col-4">Occupation</h5>
+            <p class="col-4">{{model.profile.occupation}}</p>
         </div>
 
         <div class="row">
-            <h5 class="col-2">Experience</h5>
-            <p class="col-2">{{model.profile.experience}}</p>
+            <h5 class="col-4">Experience</h5>
+            <p class="col-4">{{model.profile.experience}}</p>
         </div>
 
     <div class="m-5">
-    <a href="#" class="btn btn-primary">Edit Profile</a>
+    <button class="btn btn-primary" ng-click="nc.editProfile(model.profile)">Edit Profile</button>
     </div>
 
 <!-- <label>Skills and Specialization </label>

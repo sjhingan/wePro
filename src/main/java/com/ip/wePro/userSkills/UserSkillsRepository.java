@@ -14,7 +14,7 @@ public interface UserSkillsRepository extends JpaRepository<UserSkills, Integer>
 	@Query("select t.user_id from UserSkills t where t.skill.id in :skills")
 	List<Integer> findUsersWithSkills(@Param(value = "skills") List<Integer> skills);
 
-	@Query("select t from UserSkills t where t.user_id = :uid")
+	@Query("select t from UserSkills t where t.user_id = :uid and t.removed=0")
 	List<UserSkills> findAllByUserId(@Param(value = "uid") Integer uid);
 
 	/*@Modifying

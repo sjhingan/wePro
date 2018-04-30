@@ -63,7 +63,7 @@
                  ProfileService.updateSkills(profile.id, skills)
                  .then(function(status){
 //                        init();
-                    $location.url('/profile/viewprofile/'+1);
+                    $location.url('/profile/viewprofile/'+profile.id);
                  });
              }
 

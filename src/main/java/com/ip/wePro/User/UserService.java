@@ -53,13 +53,12 @@ public class UserService {
     }
 
 
-    @Transactional
 	public int updateUserSkills(List<Skills> skills, Integer uid) {
 		// TODO Auto-generated method stub
     	
     	List<UserSkills> userSkills = userSkillsRepository.findAllByUserId(uid);
     	
-    	for(UserSkills us: userSkills){
+    	/*for(UserSkills us: userSkills){
     		us.setRemoved(true);
     		userSkillsRepository.save(us);
     	}
@@ -69,7 +68,7 @@ public class UserService {
     		userSk.setUser_id(uid);
     		userSk.setSkill(us);
     		userSkillsRepository.save(userSk);
-    	}
+    	}*/
 		
 		return 1;
 	}
