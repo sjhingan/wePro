@@ -10,7 +10,8 @@
             addTopic : addTopic,
             updateProfile : updateProfile,
             getProfile : getProfile,
-            getAllSkills : getAllSkills
+            getAllSkills : getAllSkills,
+            updateSkills : updateSkills
         }
 
         return api;
@@ -31,6 +32,8 @@
         function getAllSkills() {
                     return $http.get("/skills/all");
         }
-
+        function updateSkills(uid,skills){
+            return $http.post("/userprofile/update/skills/"+uid, skills);
+        }
     }
 })();

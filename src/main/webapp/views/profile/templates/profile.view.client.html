@@ -1,52 +1,57 @@
-<h1>Welcome <a >{{model.profile.firstname + " "+ model.profile.lastname}}</a>
-</h1>
-
 
 <!-- <div ng-repeat="profile in model.getUserProfile"> -->
-    <div>
-     <div class="card mb-3 col-sm-10">
+    <div class="w3-container" >
 
-        <div class="card-body">
-            <h5 class="card-title">Date Of Birth</h5>
-            <p class="card-text">{{model.profile.dob}}</p>
+        <h3 >Welcome <a >{{model.profile.firstname + " "+ model.profile.lastname}}</a></h3>
+        <br>
+        <br>
+        <div class="row">
+            <h5 class="col-2">Date Of Birth</h5>
+            <p class="col-2">{{model.profile.dob}}</p>
         </div>
 
-        <div class="card-body">
-            <h5 class="card-title">Gender</h5>
-            <p class="card-text">{{model.profile.gender}}</p>
+        <div class="row">
+            <h5 class="col-2">Gender</h5>
+            <p class="col-2">{{model.profile.gender}}</p>
         </div>
 
-        <div class="card-body">
-            <h5 class="card-title">Address</h5>
-            <p class="card-text">{{model.profile.address}}</p>
+        <div class="row">
+            <h5 class="col-2">Address</h5>
+            <p class="col-2">{{model.profile.address}}</p>
         </div>
 
-        <div class="card-body">
-            <h5 class="card-title">Email</h5>
-            <p class="card-text">{{model.profile.email}}</p>
+         <div class="row">
+            <h5 class="col-2" for="projectSkills">Skills</h5>
+             <p class="col-2" >{{model.userSkills}}</p>
+
+         </div>
+
+        <div class="row">
+            <h5 class="col-2">Email</h5>
+            <p class="col-2">{{model.profile.email}}</p>
         </div>
 
-        <div class="card-body">
-            <h5 class="card-title">Phone Number</h5>
-            <p class="card-text">{{model.profile.phone}}</p>
+        <div class="row">
+            <h5 class="col-2">Phone Number</h5>
+            <p class="col-2">{{model.profile.phone}}</p>
         </div>
 
-        <div class="card-body">
-            <h5 class="card-title">Occupation</h5>
-            <p class="card-text">{{model.profile.occupation}}</p>
+        <div class="row">
+            <h5 class="col-2">Occupation</h5>
+            <p class="col-2">{{model.profile.occupation}}</p>
         </div>
 
-        <div class="card-body">
-            <h5 class="card-title">Experience</h5>
-            <p class="card-text">{{model.profile.experience}}</p>
+        <div class="row">
+            <h5 class="col-2">Experience</h5>
+            <p class="col-2">{{model.profile.experience}}</p>
         </div>
 
-
-    </div>
+    <div class="m-5">
     <a href="#" class="btn btn-primary">Edit Profile</a>
-
+    </div>
 
 <!-- <label>Skills and Specialization </label>
 <textarea ng-model="topic.description" class="form-control"></textarea>
  -->
     </div>
+</html>
