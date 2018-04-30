@@ -5,11 +5,11 @@
 
     function configuration($routeProvider) {
         $routeProvider
-            .when("/", {
-                templateUrl: "views/topic/templates/topic.view.client.html",
-                controller: "TopicController",
-                controllerAs: "model"
-            })
+            // .when("/", {
+            //     templateUrl: "views/topic/templates/topic.view.client.html",
+            //     controller: "TopicController",
+            //     controllerAs: "model"
+            // })
             .when("/mhire/:uid/:projectId", {
                 templateUrl: "views/ManagerHireAssess/templates/ManagerHireAssess.view.client.html",
                 controller: "ManagerHireAssess",

@@ -26,7 +26,7 @@
 
     <div ng-if='model.hiredUsers != null && model.hiredUsers != undefined && model.hiredUsers.length > 0 && model.projectStatus != "COMPLETED"' class="alert alert-success" role="alert">
         <h4 class="alert-heading">Well done!</h4>
-        <p>Aww yeah, you successfully read this important alert message. This example text is going to run a bit longer so that you can see how spacing within an alert works with this kind of content.</p>
+        <p>Aww yeah, you successfully read this important alert message. You have hired below members for this project.</p>
         <div ng-repeat="user in model.hiredUsers">
             <hr>
             <p class="mb-0">{{user.user_name}} hired!!!</p>
