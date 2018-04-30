@@ -16,7 +16,7 @@
         </div>
         <div class="card-body">
             <p class="card-text">{{project.description.substring(0,project.description.length > 277 ? 277 : project.description.length).concat("...")}}</p>
-            <button type="button" ng-show='"{{project.assessmentRequired}}" == "Yes" ? true : false' class="btn btn-outline-warning">Create Assessment</button>
+            <button type="button" ng-show='"{{project.assessmentId}}" == "" && "{{project.assessmentRequired}}" == "Yes" ? true : false' class="btn btn-outline-warning" ng-click="model.createAssessment(project)">Create Assessment</button>
             <button type="button" ng-click="model.editProject(project)" class="btn btn-outline-secondary">Edit</button>
             <button type="button" ng-show='"{{project.statusId}}" != 3 && "{{project.statusId}}" != 4' ng-click="model.deleteProjectPrompt(project)" class="btn btn-outline-danger">Delete</button>
         </div>

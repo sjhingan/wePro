@@ -3,34 +3,32 @@
         .module("weProApp")
         .controller("assessmentStatusController", assessmentStatusController);
 
-    function assessmentStatusController(AssessmentStatusService) {
+    function assessmentStatusController(AssessmentStatusService, $location, $routeParams) {
         var vm = this;
         vm.getAssessmentStatusPending = getAssessmentStatusPending;
+        vm.uid = $routeParams['uid'];
+        vm.taskAssessment = taskAssessment;
 
         function init() {
-            vm.getAssessmentStatus = undefined;
             vm.getAssessmentStatusPending = undefined;
-            loadAllTopics();
+            getAssessmentStatusPending();
         }
 
         init();
 
-        function loadAllTopics() {
-            AssessmentStatusService.getAllProjectsByOwner(1)
-                .then(function (assessments) {
-                    vm.getAssessmentStatus = assessments.data;
-                    console.log(vm.getAssessmentStatus);
-                });
-        }
 
-        function getAssessmentStatusPending(status) {
-            AssessmentStatusService.getAllProjectsByOwnerStatus("pending")
+        function getAssessmentStatusPending() {
+            AssessmentStatusService.getAllProjectsByOwnerStatus(vm.uid, "Pending")
                 .then(function (assessments) {
                     vm.getAssessmentStatusPending = assessments.data;
                     console.log(vm.getAssessmentStatusPending);
                 });
         }
 
+        function taskAssessment(assessment) {
+            console.log()
+            $location.url("/takeassesment/" + vm.uid + "/" + assessment.project.assessmentId);
+        }
 
     }
 

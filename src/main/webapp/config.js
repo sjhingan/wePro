@@ -10,12 +10,12 @@
                 controller: "TopicController",
                 controllerAs: "model"
             })
-            .when("/mhire", {
+            .when("/mhire/:uid/:projectId", {
                 templateUrl: "views/ManagerHireAssess/templates/ManagerHireAssess.view.client.html",
                 controller: "ManagerHireAssess",
 				controllerAs: "model"
             })
-            .when("/takeassesment", {
+            .when("/takeassesment/:uid/:assessmentId", {
                 templateUrl: "views/takeassessment/templates/takeassessment.view.client.html",
                 controller: "TakeAssessmentController",
                 controllerAs: "model"
@@ -50,11 +50,6 @@
                 controller: "assessmentStatusController",
                 controllerAs: "model"
             })
-            .when("/assessment_status/:uid/:status", {
-                templateUrl: "views/assessment_status/templates/project.assessmentStatus.view.client.html",
-                controller: "assessmentStatusController",
-                controllerAs: "model"
-            })
             .when("/project/userprojects/:uid", {
                 templateUrl: "views/project/templates/UserOpenProjects.html",
                 controller: "UserOpenProjects",
@@ -81,7 +76,7 @@
                 controller: "DashboardController",
                 controllerAs: "model"
             })
-            .when("/notifications", {
+            .when("/notifications/:uid", {
                 templateUrl: "views/notification/templates/notification.html",
                 controller: "NotificationController",
                 controllerAs: "model"

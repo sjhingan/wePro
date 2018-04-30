@@ -10,6 +10,7 @@ import javax.mail.internet.MimeMessage;
 
 import com.ip.wePro.project.Project;
 import com.ip.wePro.project.ProjectSkills;
+import com.ip.wePro.userProject.UserProject;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.javamail.JavaMailSender;
@@ -18,6 +19,7 @@ import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 
 import com.ip.wePro.User.User;
+import com.ip.wePro.User.UserRepository;
 import com.ip.wePro.userSkills.UserSkillsService;
 
 /**
@@ -35,6 +37,9 @@ public class NotificationService {
     
     @Autowired
     private UserSkillsService userSkillsService;
+    
+    @Autowired
+    private UserRepository userRepository;
     
     @Autowired
     private NotificationRepository notificationRepository; 
@@ -58,7 +63,8 @@ public class NotificationService {
 
             for(User user : userList){
             	try {
-    				sendEmail(user.getEmail());
+            		String text = "<html><body background='https://drive.google.com/file/d/1CObOseW5YB5esOvo9Dqw9nZ613Nj-5Z0/view?usp=sharing'><h1>Congratulations!!!</h1></br></br> We got you a new matching project ("+project.getName()+") for your skills. Check details regarding this opportunity by logging in to our website. <body></html>";
+    				sendEmail(user.getEmail(),text, "WePro Notification: New Project found for you");
     				logger.info("New Project creation notification sent to email id: "+ user.getEmail());
     				Notification notification = new Notification();
     				notification.setSeen(false);
@@ -76,19 +82,47 @@ public class NotificationService {
         }
         
     }
+	
+	@Async
+    public void sendNotificationForUserHire(UserProject userProject) throws InterruptedException {
+        
+        if(userProject != null){
+        	logger.info("sendNotificationForUserHire: " + userProject);
+            Project project = userProject.getProject();
+            Long userId = userProject.getUser_id();
+            User user = userRepository.findById(userId.intValue()).get();
+        	try {
+				logger.info("New Project creation notification sent to email id: "+ user.getEmail());
+				Notification notification = new Notification();
+				notification.setSeen(false);
+				notification.setUserId(user.getId());
+				String text = "<html><body background='https://drive.google.com/file/d/1CObOseW5YB5esOvo9Dqw9nZ613Nj-5Z0/view?usp=sharing'><h1>Congratulations!!!</h1></br></br> You are hired. Check details regarding your new project named: "+project.getName()+" <body></html>";
+				notification.setDescription(text);
+				notificationRepository.save(notification);
+				sendEmail(user.getEmail(), text, "WePro Notification: Congratulations!!!");
+				logger.info("Added new notification for user email:"+user.getEmail());
+			} catch (Exception e) {
+				e.printStackTrace();
+				logger.log(Level.SEVERE, "Error occured while sending email to user: "+ user.getEmail());;
+			}
+        }else{
+        	logger.info("No user project details found.");
+        }
+        
+    }
     
 	/**
 	 * Method used to send an email to user for new project launched
 	 * @param email
 	 * @throws Exception
 	 */	
-    private void sendEmail(String email) throws Exception{
+    private void sendEmail(String email, String text, String subject) throws Exception{
         MimeMessage message = sender.createMimeMessage();
         MimeMessageHelper helper = new MimeMessageHelper(message);
         
         helper.setTo(email);
-        helper.setText("<html><body>New Project Added...<body></html>", true);
-        helper.setSubject("WePro Notification: New Project Found");
+        helper.setText(text, true);
+        helper.setSubject(subject);
         
         sender.send(message);
     }

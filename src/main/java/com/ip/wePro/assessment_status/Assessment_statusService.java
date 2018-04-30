@@ -52,4 +52,8 @@ public class Assessment_statusService {
     public List<Assessment_status> findAllByProjectId(int projectId) {
         return assessmentStatusRepository.findAllByProjectId(projectId);
     }
+
+    public void updateAssessmentStatus(String status, String assessmentId, int uid){
+        assessmentStatusRepository.updateAssessmentStatus(status, Integer.parseInt(assessmentId.split("_")[1]), uid);
+    }
 }

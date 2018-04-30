@@ -2,6 +2,8 @@ package com.ip.wePro.assessment;
 
 import java.util.List;
 
+import com.ip.wePro.project.ProjectService;
+import com.ip.wePro.project.ProjectStatus;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -18,13 +20,17 @@ public class AssessmentController {
 	
 	@Autowired
 	AssessmentService assessmentService;
+
+	@Autowired
+	ProjectService projectService;
 	
 	/* This method will return the newly created assessmentID for the project which is creating this assessment*/
 	@PostMapping("/add/{projectId}")	
-	public String addAssessment(@RequestBody AssessmentList assessmentList,@PathVariable int projectId)
+	public void addAssessment(@RequestBody AssessmentList assessmentList,@PathVariable int projectId)
 	{
 		System.out.println("list="+assessmentList + "\nPID="+projectId);
-		return assessmentService.addAssessment(assessmentList,projectId);		
+		String assessmentId = assessmentService.addAssessment(assessmentList,projectId);
+		projectService.updateProjectAssessmentId(projectId, assessmentId);
 	}
 		
 	/* This method will retrieve the list of all questions & their respective options of respective assessment*/
