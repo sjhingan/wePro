@@ -1,6 +1,7 @@
 package com.ip.wePro.assessment_status;
 
 import com.ip.wePro.User.User;
+import com.ip.wePro.project.Project;
 
 import javax.persistence.*;
 
@@ -13,8 +14,9 @@ public class Assessment_status {
     @OneToOne
     @JoinColumn(name = "user_id")
     private User user;
-    @Column(name = "project_id")
-    private int projectId;
+    @OneToOne
+    @JoinColumn(name = "project_id")
+    private Project project;
 
     @Column(name = "assesment_status")
     private String assesmentStatus;
@@ -24,9 +26,9 @@ public class Assessment_status {
     }
 
 
-    public Assessment_status(User user, int projectId, String assesmentStatus) {
+    public Assessment_status(User user, Project project, String assesmentStatus) {
         this.user = user;
-        this.projectId = projectId;
+        this.project = project;
         this.assesmentStatus = assesmentStatus;
     }
 
@@ -45,12 +47,12 @@ public class Assessment_status {
         this.user = user;
     }
 
-    public int getProjectId() {
-        return projectId;
+    public Project getProject() {
+        return project;
     }
 
-    public void setProjectId(int projectId) {
-        this.projectId = projectId;
+    public void setProject(Project project) {
+        this.project = project;
     }
 
     public String getAssesmentStatus() {

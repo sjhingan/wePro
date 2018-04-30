@@ -1,13 +1,12 @@
-<h1>Welcome to Project!!!</h1>
-<div ng-repeat="assessment in model.getAssessmentStatus">
+<div ng-repeat="assessment in model.getAssessmentStatusPending">
     <div class="card mb-3 col-sm-10">
         <div class="card-header ">
-            <a >User ID: {{assessment.uid}}</a>
+            <a >{{assessment.project.name}}</a>
         </div>
         <div class="card-body">
             <h5 class="card-title">Special title treatment</h5>
-            <p class="card-text">Project ID: {{assessment.projectId}}</p>
-            <a href="#" class="btn btn-primary">Take Assessment</a>
+            <p class="card-text">{{assessment.project.dueDate.split('T')[0]}}</p>
+            <button type="button" ng-click="model.taskAssessment(assessment)" class="btn btn-primary">Take Assessment</button>
         </div>
         <div class="card-footer text-muted">
             Assessment Status: {{assessment.assesmentStatus}}

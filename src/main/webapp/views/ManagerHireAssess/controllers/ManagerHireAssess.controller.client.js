@@ -3,11 +3,13 @@
         .module("weProApp")
         .controller("ManagerHireAssess",managerHireAssess);
 
-    function managerHireAssess(ManagerHireAssessService) {
+    function managerHireAssess(ManagerHireAssessService, $routeParams, $location) {
         var vm = this;
         vm.assessmentList = []
         vm.addAssessment = addAssessment;
-        vm.addQuestion = addQuestion; 
+        vm.addQuestion = addQuestion;
+        vm.projectId = $routeParams['projectId'];
+        vm.uid = $routeParams['uid'];
 
        function addQuestion(assessment)
        {
@@ -35,9 +37,10 @@
     		   {
 	    		   var assessmentSet =  {"assessmentQuestions":assessment};
 		     	   console.log(assessmentSet);
-		     	   var projectId = 4444; 
-		     	   ManagerHireAssessService.addAssessment(projectId,assessmentSet).then(function (assessment_id) {
-		                console.log("Assessment ID from server"+assessment_id);
+		     	   var projectId = vm.projectId;
+		     	   ManagerHireAssessService.addAssessment(projectId,assessmentSet).then(function (status) {
+		                console.log("Assessment ID from server");
+                       	$location.url("/project/" + vm.uid + "/add");
 		            });
     		   }
        }    	

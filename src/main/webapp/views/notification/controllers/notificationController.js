@@ -4,14 +4,15 @@
         .controller("NotificationController", notificationController);
 
     
-    function notificationController(NotificationService) {
+    function notificationController(NotificationService, $routeParams) {
         var vm = this;
         vm.notificationList = undefined;
+        vm.uid = $routeParams['uid'];
         /**
          * This method will load all the notification  for a user
          */
         function loadAllNotificationsForUser() {
-        	NotificationService.getAllNotificationForUser("1")
+        	NotificationService.getAllNotificationForUser(vm.uid)
                 .then(function (projects) {
                 	console.log(projects.data);
                 	vm.notificationList = projects.data;

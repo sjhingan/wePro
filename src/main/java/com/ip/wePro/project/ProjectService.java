@@ -85,8 +85,8 @@ public class ProjectService {
         return projectRepository.findAllByProjectID(id);
     }
 
-    public void updateProjectAssessmentId(int id, int assessmentId){
-        projectRepository.updateProjectAssessmentId(id, assessmentId);
+    public void updateProjectAssessmentId(int id, String assessmentId){
+        projectRepository.updateProjectAssessmentId(assessmentId, id);
         updateProjectStatus(id, ProjectStatus.OPEN.value());
     }
 }

@@ -37,6 +37,8 @@ public interface ProjectRepository extends JpaRepository<Project, Integer>, Pagi
     @Query("select p from Project p where p.id in :projectIdList")
     List<Project> findAllProjectDetailsBypid(@Param("projectIdList")List<Integer> allProjectIDByStatusIdAndOwnerStatus);
 
+    @Transactional
+    @Modifying
     @Query("update Project p set p.assessmentId = :assessmentId where p.id = :id")
-    Project updateProjectAssessmentId(@Param("assessmentId") int assessmentId, @Param("id") int id);
+    int updateProjectAssessmentId(@Param("assessmentId") String assessmentId, @Param("id") int id);
 }

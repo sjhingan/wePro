@@ -17,10 +17,9 @@
                 return $http.get("/assessment/get/"+assessmentId);
             }
             
-            function submitAssessmentResult(takenAssessmentSet)
+            function submitAssessmentResult(userId, takenAssessmentSet)
             {
-            	var userid = 1;
-            	return $http.post("/assessment/result/add/"+userid,takenAssessmentSet);
+            	return $http.post("/assessment/result/add/" + userId,takenAssessmentSet);
             }
         }    	
     	

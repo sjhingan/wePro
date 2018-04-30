@@ -16,6 +16,7 @@
         const pageSize = 5;
         var firstLoad = true;
         vm.getProjectStatus = getProjectStatus;
+        vm.createAssessment = createAssessment;
 
         function init() {
             vm.getOwnerProjectsList = undefined;
@@ -190,6 +191,10 @@
                 status = "COMPLETED";
             }
             return status;
+        }
+
+        function createAssessment(project) {
+            $location.url("/mhire/" + vm.uid + "/" + project.id);
         }
     }
 
