@@ -1,4 +1,97 @@
-<h1> Creating Hiring Assessment </h1>
+<link rel="stylesheet" href="assets/css/assessment_form.css">
+
+<div class="container">
+  <form ng-submit="model.addAssessment(model.assessmentList)">
+  
+  <div ng-repeat="value in model.assessmentList track by $index"> <!-- NGrepeat LOOP -->
+  
+  
+    <div class="row">
+      <div class="col-25">
+        <label for="fname">Enter the Question: </label>
+        <input type="text" class="form-control" ng-model="model.assessmentList[$index].question">
+      </div>
+      <div class="col-75">
+        <input type="text" id="fname" name="firstname" placeholder="Question">
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-25">
+        <label for="lname"> 
+        	<input type="radio" type="radio" value="1" ng-class="{checked: model.assessmentList[$index].correctAnswer == 1}" ng-model="model.assessmentList[$index].correctAnswer"/> Option 1: 
+        </label>
+      </div>
+      <div class="col-75">
+        <input type="text" ng-model="model.assessmentList[$index].option1" placeholder="Option 1">
+      </div>
+    </div>
+    
+    <div class="row">
+      <div class="col-25">
+        <label for="lname"> 
+        	<input type="radio" value="2"  ng-class="{checked: model.assessmentList[$index].correctAnswer == 2}"  ng-model="model.assessmentList[$index].correctAnswer"/> Option 2: 
+        </label>
+      </div>
+      <div class="col-75">
+        <input type="text" ng-model="model.assessmentList[$index].option2" placeholder="Option 2">
+      </div>
+    </div>
+    <!-- OPTION3 VALIDATION -->
+    <div class="checkbox">
+	  <label>Do you want to add another option? <input type="checkbox" ng-model="myVar1" ng-init="myVar1 = false"></label>
+	</div>
+	<div ng-if="myVar1 == true">
+		<div class="row" >
+	      <div class="col-25">
+	        <label for="lname"> 
+	        	<input type="radio" value="3"  ng-class="{checked: model.assessmentList[$index].correctAnswer == 3}"  ng-model="model.assessmentList[$index].correctAnswer"/> Option 3: 
+	        </label>
+	      </div>
+	      <div class="col-75">
+	        <input type="text" ng-model="model.assessmentList[$index].option3" placeholder="Option 3">
+	      </div>
+	    </div>
+		</div>
+<!-- OPTION3 VALIDATION ENDS -->
+<!-- option4 validation -->
+<div ng-if="myVar1 == true">
+<div class="checkbox">
+	  <label>Do you want to add another option? <input type="checkbox" ng-model="myVar2" ng-init="myVar2 = false"></label>
+	</div>
+	<div ng-if="myVar2 == true">
+		<div class="row" >
+	      <div class="col-25">
+	        <label for="lname"> 
+	        	<input type="radio" value="4"  ng-class="{checked: model.assessmentList[$index].correctAnswer == 3}"  ng-model="model.assessmentList[$index].correctAnswer"/> Option 4: 
+	        </label>
+	      </div>
+	      <div class="col-75">
+	        <input type="text" ng-model="model.assessmentList[$index].option4" placeholder="Option 4">
+	      </div>
+	    </div>
+		</div>
+</div>
+
+	  <div class="col-25">
+        <label for="fname">Enter the marks for this question: </label>
+        <input type="number" ng-model="model.assessmentList[$index].marks">
+      </div>
+
+<!-- option 4 validation ends -->
+    <div class="row">
+      <button type="button" class="btn btn-outline-primary" ng-click="model.addQuestion()"> Add another question? </button>
+    </div>
+    <div class="row">
+    <button type="submit" class="btn btn-outline-primary">Submit</button>
+    </div>
+    
+    </div><!-- NGrepeat LOOP -->
+  </form>
+</div>
+
+
+<!-- ORIGINAL -->
+<!--  <h1> Creating Hiring Assessment </h1>
 <br/>
 
 <form ng-submit="model.addAssessment(model.assessmentList)">
@@ -50,4 +143,4 @@
 
     <button type="submit" class="btn btn-outline-primary">Submit</button>
 
-</form>
+</form>-->

@@ -37,10 +37,12 @@
     		   {
 	    		   var assessmentSet =  {"assessmentQuestions":assessment};
 		     	   console.log(assessmentSet);
+
 		     	   var projectId = vm.projectId;
 		     	   ManagerHireAssessService.addAssessment(projectId,assessmentSet).then(function (status) {
 		                console.log("Assessment ID from server");
                        	$location.url("/project/" + vm.uid + "/add");
+
 		            });
     		   }
        }    	

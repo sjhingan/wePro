@@ -1,7 +1,61 @@
-<!--login.html-->
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="assets/css/logincss.css">
 
-<div class="col-md-4 col-md-offset-3">
+<div style="margin-top:10%;" class="row">
+
+<div class= "col-lg-4 col-md-4 col-sm-4"></div>
+
+<div class= "col-lg-4 col-md-4 col-sm-4">
+<div class="container">
+  <form name="form" ng-submit="model.login(model.user)" role="form">
+    <div class="row">
+      <!-- <h2 style="text-align:center">Login with Social Media or Manually</h2> -->
+      <!-- <div class="vl">
+        <span class="vl-innertext">or</span>
+      </div> -->
+
+      <!-- <div class="col">
+        <a href="#" class="fb btn">
+          <i class="fa fa-facebook fa-fw"></i> Login with Facebook
+         </a>
+        <a href="#" class="twitter btn">
+          <i class="fa fa-twitter fa-fw"></i> Login with Twitter
+        </a>
+        <a href="#" class="google btn"><i class="fa fa-google fa-fw">
+          </i> Login with Google+
+        </a>
+      </div> -->
+	 
+      <div class="col">
+        <!-- <div class="hide-md-lg">
+          <p>Or sign in manually:</p>
+        </div> -->
+
+        <input ng-class="{ 'has-error': form.username.$dirty && form.username.$error.required }" type="text" name="email" id="email" ng-model="model.user.email" placeholder="Username" required>
+        <input ng-class="{ 'has-error': form.password.$dirty && form.password.$error.required } type="password" name="password" id="password" ng-model="model.user.password" placeholder="Password" required>
+        <button type="submit" ng-disabled="form.$invalid || model.dataLoading" class="btn" style="background-color:green;color:white;">Login</button>
+      </div>
+      
+    </div>
+  </form>
+</div>
+
+<div class="bottom-container">
+  <div class="row">
+    <div class="col">
+      <a style="color:white" class="btn">Not a member? </a>
+    </div>
+    <div class="col">
+      <a href="/#/register" style="color:white" class="btn">Register! </a>
+    </div>
+  </div>
+</div>
+
+</div>
+<div class= "col-lg-4 col-md-4 col-sm-4"></div>
+
+</div>
+<!-- <div class="col-md-4 col-md-offset-3">
     <h4 style="text-align:center;color:blue">Login</h4>
     <form name="form" ng-submit="model.login(model.user)" role="form">
         <div class="form-group" style="text-align:center;color:blue" ng-class="{ 'has-error': form.username.$dirty && form.username.$error.required }">
@@ -21,3 +75,4 @@
         </div>
     </form>
 </div>
+ -->

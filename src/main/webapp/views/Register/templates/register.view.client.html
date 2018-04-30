@@ -1,3 +1,39 @@
+  <link rel="stylesheet" href="assets/css/logincss.css">
+
+<!-- gauri's -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+ <!--gauriz -->
+
+<div style="margin-top:10%;" class="row">
+
+<div class= "col-lg-4 col-md-4 col-sm-4"></div>
+
+<div class= "col-lg-4 col-md-4 col-sm-4">
+<div class="container">
+  <form name="form" ng-submit="model.register(model.user)" role="form">
+    <div class="row">
+      
+      <div class="col">
+        <input type="text" name="firstname" id="firstName" class="form-control" ng-model="model.user.firstname" placeholder="First Name" required/>
+        <input type="text" name="lastname" id="Text1" class="form-control" ng-model="model.user.lastname" placeholder="Last Name" required/>
+        <input type="text" name="email" id="email" class="form-control" ng-model="model.user.email" placeholder="emailid@something.com" required>
+        <input type="password" name="password" id="password" class="form-control" ng-model="model.user.password" placeholder="Password" required>
+        <br/>
+        <button type="submit" ng-disabled="form.$invalid || model.dataLoading" class="btn" style="background-color:green;color:white;">Register</button>
+        <button type="submit"  class="btn btn-link" style="background-color:grey;color:white;">Cancel</button>
+      </div>
+      
+    </div>
+  </form>
+</div>
+</div>
+<div class= "col-lg-4 col-md-4 col-sm-4"></div>
+
+</div>
+
+
+<!--  
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 
@@ -30,4 +66,4 @@
             <a href="#!/" class="btn btn-link">Cancel</a>
         </div>
     </form>
-</div>
+</div> -->
