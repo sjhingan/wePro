@@ -6,6 +6,8 @@
     function registerController(UserService, $location) {
         var vm = this;
         vm.register = register;
+        
+        
        //alert("Inside controller");
         function register(user) {
             //alert("Inside register from controller");
@@ -23,5 +25,6 @@
                     }
                 });
         }
+        
     }
 })();
