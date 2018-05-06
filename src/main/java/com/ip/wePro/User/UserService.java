@@ -12,6 +12,7 @@ import com.ip.wePro.skills.Skills;
 import com.ip.wePro.userSkills.UserSkills;
 import com.ip.wePro.userSkills.UserSkillsRepository;
 
+// service class to provide the services to the user controller class methods
 @Service
 public class UserService {
 
@@ -21,11 +22,13 @@ public class UserService {
     @Autowired
     private UserSkillsRepository userSkillsRepository;
 
+    // get the user profile from the database, to display to the user on view profile
     public User getUserProfile(int id) {
         return userRepository.findById(id).get();
     }
 
 
+    // update the user profile in the database
     public void updateProfile(User profile) {
         userRepository.save(profile);
     }
