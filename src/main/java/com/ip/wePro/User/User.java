@@ -11,6 +11,7 @@ import javax.persistence.OneToMany;
 
 import com.ip.wePro.userSkills.UserSkills;
 
+// entity class for User Login, Register and Profile
 @Entity
 public class User {
 
