@@ -8,6 +8,9 @@ import javax.persistence.Entity;
 //import javax.persistence.Id;
 import javax.persistence.Table;
 
+/**
+ * POJO class for assessment_result table
+ */
 @Entity
 @Table(name ="assessment_result")
 public class AssessmentResult implements Comparable<AssessmentResult>{

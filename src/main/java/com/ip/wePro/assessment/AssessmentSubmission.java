@@ -45,6 +45,9 @@ public class AssessmentSubmission {
 	}
 }
 
+/**
+ * POJO class which maps question alongwith it's respective seleted answer by developer
+ */
 class QuestionAnswer
 {
 	private int qid;

@@ -9,6 +9,10 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.validation.constraints.NotNull;
 
+/**
+ * POJO class to store the details of the assessment result of the user
+ */
+
 @Embeddable
 public class ProjectAssessmentMappingForResultSubmission implements Serializable{
 

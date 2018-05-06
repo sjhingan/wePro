@@ -24,8 +24,13 @@ public class AssessmentResultController {
 	@Autowired
 	Assessment_statusService assessment_statusService;
 	
-	/* This method will get the assessment submitted by developer. Then it will calculate the result for individual.
-	 * Then userId,assessmentId,Result will be saved to assessmentResult table. */
+	/**
+     * This method will get the assessment submitted by developer. Then it will calculate the result for individual.
+     * Then userId,assessmentId,Result will be saved to assessmentResult table.
+     * @param userId
+     * @param list of question & their respective selected answer by developer
+     * @return
+     */
 	@PostMapping("/add/{userId}")
 	public void addResult(@RequestBody AssessmentSubmission submittedAssessment,@PathVariable int userId)
 	{
@@ -33,14 +38,22 @@ public class AssessmentResultController {
 		assessment_statusService.updateAssessmentStatus("Completed", submittedAssessment.getAssessmentId(), userId);
 	}
 	
-	/* This method will return the list of all developers with their results based on the assessmentId */
+	/**
+     * This method will return the list of all developers with their results based on the assessmentId
+     * @param assessmentId
+     * @return List of assessmentResult object which contains user & their grades for particular assessment
+     */
 	@GetMapping("/get/{assessmentId}")
 	public List<AssessmentResult> getResults(@PathVariable String assessmentId)
 	{
 		return assessmentResultService.getResults(assessmentId);		
 	}
 	
-	/* This method will delete all the records of assessment based on assessmentId. */
+	/**
+     * This method will delete all the records of assessment based on assessmentId.
+     * @param assessmentId
+     * @return
+     */
 	@DeleteMapping("/delete/{assessmentId}")
 	public void deleteResults(@PathVariable String assessmentId)
 	{

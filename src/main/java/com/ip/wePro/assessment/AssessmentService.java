@@ -14,7 +14,12 @@ public class AssessmentService {
 	@Autowired
 	AssessmentRepository assessmentRepository;
 	
-	//Add assessment in the database & return respective assessmentId
+	/**
+     * Add assessment in the database & return respective assessmentId
+     * @param projectId
+     * @param object of assessmentList containing all questions of assessment 
+     * @return assessmentId as String
+     */
 	public String addAssessment(AssessmentList assessmentList,int projectId)
 	{		
 		String assessmentId = "Assessment_"+projectId;
@@ -33,7 +38,11 @@ public class AssessmentService {
 		return assessmentId;
 	}
 	
-	// Get the assessment based on the assessmentId.
+	/**
+     * Get the assessment based on the assessmentId.
+     * @param assessmentId
+     * @return List of all questions from the assessment
+     */
 	public List<Assessment> getAssessment(String assessmentId)
 	{			
 		List<Assessment> allQuestions = assessmentRepository.findWholeAssessmentById(assessmentId);
@@ -47,13 +56,22 @@ public class AssessmentService {
 		return allQuestions;
 	}
 	
-	//If manager wants to edit the existing assessment
+	/**
+     * If manager wants to edit the existing assessment
+     * @param List of all updated questions from the assessment
+     * @return 
+     */
 	public void updateAssessment(AssessmentList assessmentList)
 	{
 		List<Assessment> allQuestions = assessmentList.getAssessmentQuestions();
 		assessmentRepository.saveAll(allQuestions);
 	}
-		
+	
+	/**
+     * If manager wants to delete the existing assessment
+     * @param assessmentId
+     * @return 
+     */
 	public void deleteAssessment(String assessmentId)
 	{
 		assessmentRepository.deleteWholeAssessmentById(assessmentId);

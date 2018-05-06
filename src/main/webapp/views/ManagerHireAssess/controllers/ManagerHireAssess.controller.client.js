@@ -11,11 +11,21 @@
         vm.projectId = $routeParams['projectId'];
         vm.uid = $routeParams['uid'];
 
+        /**
+         * This method is used to add each question of assessment into a list
+         * @param assessment object which contains one question-pack
+         * @return 
+         */
        function addQuestion(assessment)
        {
     	   vm.assessmentList.push("");
        }
        
+       /**
+        * This method first checks for all validations & then calls method from service to send data to server.
+        * @param List of all questions from the assessment
+        * @return 
+        */
        function addAssessment(assessment)
        {
     	   console.log(assessment);

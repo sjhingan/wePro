@@ -14,6 +14,10 @@
         vm.uid = $routeParams['uid'];
         vm.assessmentId = $routeParams['assessmentId'];
         
+        /**
+         * This method calls service method which retrieves assessment data of the project to show to user.
+         * @return 
+         */
         function takedata()
         {
         	
@@ -30,6 +34,13 @@
 
         takedata();
         
+        /**
+         * This method preprocess the taken_assessment data to create data in required. 
+         * Then it calls method from service so that collected data can be send over to server for saving 
+         * into DB.
+         * @param set of question & respective selected answer by developer
+         * @return 
+         */
         function submitTakenAssessment(takenAssessment)
         {
         	var i;

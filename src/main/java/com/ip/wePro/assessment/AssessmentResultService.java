@@ -18,6 +18,13 @@ public class AssessmentResultService {
 	@Autowired
 	AssessmentRepository assessmentRepository;
 
+	/**
+     * This method compares answer submitted by developer with correct answers given by manager. Accordingly,
+     * it calculates grades for developer & stores the result in the DB.
+     * @param userId
+     * @param List of question & respective selected answer by the developer 
+     * @return
+     */
 	public void addResult(AssessmentSubmission submittedAssessment , int userId) {
 				
 		Map<Integer,Integer> CorrectSolution = new HashMap<Integer,Integer>();
@@ -77,6 +84,11 @@ public class AssessmentResultService {
 		assessmentResultRepository.save(resultObject);		
 	}
 
+	/**
+     * This method retrieves the userId & their grades for the assessment from DB.
+     * @param assessmentId 
+     * @return List of developer & their grades for particular assessment
+     */
 	public List<AssessmentResult> getResults(String assessmentId) {
 		
 		List<AssessmentResult> allList =  assessmentResultRepository.findByProjectAssessmentMappingForResultSubmissionAssessmentId(assessmentId);
@@ -84,6 +96,11 @@ public class AssessmentResultService {
 		return allList;
 	}
 
+	/**
+     * This method deletes all the records related to assessment from DB.
+     * @param assessmentId 
+     * @return
+     */
 	public void deleteResults(String assessmentId) {	
 		
 		assessmentResultRepository.deleteByProjectAssessmentMappingForResultSubmissionAssessmentId(assessmentId);

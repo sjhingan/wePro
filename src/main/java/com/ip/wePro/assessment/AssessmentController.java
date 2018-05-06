@@ -24,7 +24,13 @@ public class AssessmentController {
 	@Autowired
 	ProjectService projectService;
 	
-	/* This method will return the newly created assessmentID for the project which is creating this assessment*/
+	/**
+     * This method will save assessment created by manager into DB & generates unique assessment id 
+     * which is stored in project table.
+     * @param projectId
+     * @param list of assessment objects
+     * @return
+     */
 	@PostMapping("/add/{projectId}")	
 	public void addAssessment(@RequestBody AssessmentList assessmentList,@PathVariable int projectId)
 	{
@@ -32,22 +38,35 @@ public class AssessmentController {
 		String assessmentId = assessmentService.addAssessment(assessmentList,projectId);
 		projectService.updateProjectAssessmentId(projectId, assessmentId);
 	}
-		
-	/* This method will retrieve the list of all questions & their respective options of respective assessment*/
+	
+	/**
+     * This method will retrieve the list of all questions & their respective options for respective assessment
+     * @param assessmentId
+     * @return List of assessment objects
+     */
 	@GetMapping("/get/{assessmentId}")
 	public List<Assessment> getAssessment(@PathVariable String assessmentId)
 	{		
 		return assessmentService.getAssessment(assessmentId);
 	}
 	
-	/*This method will edit the existing assessment*/
+	/**
+     * This method will edit the existing assessment if required
+     * @param assessmentId
+     * @param updated assessment in the form of list of questions
+     * @return
+     */
 	@PutMapping("/update/{assessmentId}")
 	public void updateAssessment(@RequestBody AssessmentList assessmentList)
 	{
 		assessmentService.updateAssessment(assessmentList);
 	}
 	
-	/*This method will delete the assessment*/
+	/**
+     * This method will delete the assessment if required
+     * @param assessmentId
+     * @return
+     */	
 	@DeleteMapping("/delete/{assessmentId}")
 	public void deleteAssessment(@PathVariable String assessmentId)
 	{
