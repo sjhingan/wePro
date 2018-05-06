@@ -17,22 +17,25 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequestMapping("/userprofile")
 
+// contriller for user profile handling
 public class UserController {
 
     @Autowired
     private UserService userService;
 
 
+    // controller to get the profile of the user by id
     @GetMapping("/getprofile/{id}")
     public User getProfileById(@PathVariable int id){
         return userService.getUserProfile(id);
     }
-
+    
+    // controller to update the profile by id
     @PutMapping("/updateProfile/{id}")
     public void updateProfileById(@RequestBody User profile){
         userService.updateProfile(profile);
     }
-
+    
     @PostMapping("/register")
     public int registerUser(@RequestBody User user)
     {
@@ -46,12 +49,14 @@ public class UserController {
         return userService.validateUser(email,password);
     }
     
+    // controller to update the skills of the user when user updates his/her profile
     @PostMapping("/update/skills/{uid}")
     public int updateUserSkills(@RequestBody List<Skills> skills, @PathVariable Integer uid)
     {
         return userService.updateUserSkills(skills, uid);
     }
     
+    // check the skills the user by id. (used to display the user details when user clicks on view profile)
     @GetMapping("/checkSkills/{uid}")
     public int checkSkills(@PathVariable Integer uid)
     {
