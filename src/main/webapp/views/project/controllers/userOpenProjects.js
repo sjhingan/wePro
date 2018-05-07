@@ -1,3 +1,4 @@
+//Client Side controller code for the User Open Project Display
 (function () {
     angular
         .module("weProApp",)

@@ -14,6 +14,13 @@ import com.ip.wePro.skills.Skills;
 import org.springframework.web.bind.annotation.*;
 
 
+
+/**
+ * UserController is the server access point.
+ * It is the host of the REST APIs to perform all the operations with respect to the project.
+ */
+
+
 @RestController
 @RequestMapping("/userprofile")
 
@@ -35,13 +42,25 @@ public class UserController {
     public void updateProfileById(@RequestBody User profile){
         userService.updateProfile(profile);
     }
-    
+
+    /**
+     * Add new User in the system using POST method.
+     * @return return true if data successfully saved in the database.
+     */
     @PostMapping("/register")
     public int registerUser(@RequestBody User user)
     {
         System.out.println(user.toString());
         return userService.registeruser(user);
     }
+
+    /**
+     * Get all the User in the system using GET method.
+     * validate user with it's username and password with database.
+     * @return return userid if the password matches.
+     */
+
+
 
     @GetMapping("/checkuser/{email}/{password}")
     public int checkuser(@PathVariable String email,@PathVariable String password )

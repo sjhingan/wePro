@@ -33,6 +33,16 @@ public class UserService {
         userRepository.save(profile);
     }
 
+
+
+    /**
+     * This is a service class which acts as a intermediate between the controller and the repository.
+     * Controller will call the method in the service class to get the information as per rest call.
+     * The service will invoke the repository methods which will fetch from the database and return the result.
+     */
+
+    /* ValidateUser helps to check whether entered username and password is correct or not and return
+    * user ID of user on successfull validation*/
     public int validateUser(String email, String password) {
 
         User user1 = userRepository.getuserinfo(email);
@@ -49,6 +59,7 @@ public class UserService {
         }
     }
 
+    /* registeruser help to create new register and return true if the data is successfully saved*/
     public int registeruser(User user) {
 
         userRepository.save(user);

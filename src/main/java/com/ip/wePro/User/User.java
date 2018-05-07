@@ -11,7 +11,11 @@ import javax.persistence.OneToMany;
 
 import com.ip.wePro.userSkills.UserSkills;
 
-// entity class for User Login, Register and Profile
+
+/**
+ * User class match the project table in the database.
+ * The variables match the columns of the table.
+ */
 @Entity
 public class User {
 
@@ -34,6 +38,7 @@ public class User {
     @OneToMany(mappedBy="user_id", cascade = CascadeType.ALL)
     Set<UserSkills> userSkills;
 
+    /* Added getter setter below for User*/
     protected User(){}
 
     public User(int id){
@@ -144,7 +149,18 @@ public class User {
 				+ "]";
 	}
 
-	public User(int id, String firstname, String email, String lastname, String password, String dob, String gender,
+
+    /**
+     * User parameterize constructor.
+     * @param id is the primary key of the User.
+     * @param firstname is the firstname of user.
+     * @param lastname is the lastname of user.
+     * @param email is the username of user.
+     * @param password is the password of user.
+     */
+
+
+    public User(int id, String firstname, String email, String lastname, String password, String dob, String gender,
 			String address, String phone, String occupation, String experience, String description,
 			Set<UserSkills> userSkills) {
 		super();

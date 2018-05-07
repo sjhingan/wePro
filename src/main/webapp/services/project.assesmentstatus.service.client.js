@@ -1,3 +1,5 @@
+//This Service code is for assessment_status where each http request is mapped to a function based on its requirement
+
 (function () {
     angular
         .module("weProApp")

@@ -1,3 +1,4 @@
+//Client Side controller code for the User Closed Projects display
 (function () {
     angular
         .module("weProApp")

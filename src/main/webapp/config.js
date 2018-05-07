@@ -86,6 +86,9 @@
                 controller: "DashboardController",
                 controllerAs: "model"
             })
+            .when("/aboutUs",{
+                templateUrl: "views/home/templates/aboutUs.html"
+            })
             .otherwise({
                 redirectTo: "/home"
             });

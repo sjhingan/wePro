@@ -1,3 +1,4 @@
+//This Service code is for Project, where each http request is mapped to a function based on its requirement
 (function () {
     angular
         .module("weProApp")

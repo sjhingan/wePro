@@ -1,3 +1,4 @@
+//Client Side controller code for the Owner Individual Projects
 (function () {
     angular
         .module("weProApp")

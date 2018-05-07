@@ -10,6 +10,12 @@ import org.springframework.data.repository.query.Param;
 
 public interface UserRepository extends JpaRepository<User,Integer> {
 
+    /**
+     * Find the user for given email
+     * @param email email id.
+     * @return the content of user.
+     */
+
     @Query("Select A from User A where A.email = :email")
     User getuserinfo(@Param("email") String email);
 
