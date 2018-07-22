@@ -24,7 +24,9 @@ public class UserService {
 
     // get the user profile from the database, to display to the user on view profile
     public User getUserProfile(int id) {
-        return userRepository.findById(id).get();
+    	User user = userRepository.findById(id).get();
+    	System.out.println("USer details :" + user.getEmail());
+        return user; 
     }
 
 

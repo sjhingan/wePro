@@ -3,7 +3,7 @@
         .module("weProApp")
         .controller("SetProfileController",profileController);
 
-    function profileController(ProfileService, $location) {
+    function profileController(ProfileService, $location,$routeParams) {
         var vm = this;
         //vm.addTopic = addTopic;
         vm.updateProfile = updateProfile;
@@ -12,6 +12,8 @@
         vm.selectedSkills = undefined;
         vm.commonSkills = undefined;
         vm.oldprofile = undefined;
+        
+        vm.userId = $routeParams['uid'];
 
 
         vm.makingObject = undefined;
@@ -25,7 +27,8 @@
             // loadAllTopics();
 
            loadSkills();
-           console.log("Hi, inside profile controller!! ")
+           console.log("Hi, inside profile controller!! ");
+           
            loadOldUserProfile();
 
 
@@ -69,9 +72,11 @@
 
 
         function loadOldUserProfile() {
-            ProfileService.getProfile(1)
+        	console.log("ID from profile page before getprofile call:"+vm.userId);
+            ProfileService.getProfile(vm.userId)
                 .then(function (profile) {
                     vm.oldprofile = profile.data;
+                    console.log("In then function of getProfile email:" + vm.oldprofile.email);
                     console.log(vm.oldprofile);
                     console.log(vm.oldprofile.userSkills);
                     vm.userSkills = vm.oldprofile.userSkills;
@@ -100,11 +105,11 @@
                             }
                       }
                       */
-                       console.log("Printing Common Skills");
-                        console.log(vm.commonSkills);
-
-
-                      console.log("print end");
+//                       console.log("Printing Common Skills");
+//                        console.log(vm.commonSkills);
+//
+//
+//                      console.log("print end");
 
                 });
         }

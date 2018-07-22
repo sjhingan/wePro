@@ -2,12 +2,13 @@
     angular
         .module("weProApp")
         .controller("UserProfileController", userProfileController);
-    function userProfileController(ProfileService, $location) {
+    function userProfileController(ProfileService, $location,$routeParams) {
         var vm = this;
         vm.allSkills = undefined;
         vm.userSkillsDetailedArray = undefined;
         vm.userSkills = undefined;
         vm.oldprofile = undefined;
+        vm.userId = $routeParams['uid'];
 
 
 
@@ -27,7 +28,8 @@
         init();
 
         function loadUserProfile() {
-            ProfileService.getProfile(1)
+        	console.log("USerid from dashboard :"+vm.userId);
+            ProfileService.getProfile(vm.userId)
                 .then(function (profile) {
                     vm.profile = profile.data;
                     vm.userSkillsDetailedArray = vm.profile.userSkills;
@@ -51,7 +53,8 @@
                             });
                  }
          this.editProfile = function editProfile(user){
-        	 console.log(user)
+        	 console.log("Inside edit profile function");
+        	 console.log(user);
         	 $location.url('/profile/setprofile/'+user.id);
          }
     }

@@ -34,6 +34,7 @@ public class UserController {
     // controller to get the profile of the user by id
     @GetMapping("/getprofile/{id}")
     public User getProfileById(@PathVariable int id){
+    	System.out.println("ID from client is =>"+id);
         return userService.getUserProfile(id);
     }
     

@@ -1,46 +1,55 @@
 <h1>Update Profile</h1>
 <label>UserId</label>
-<input ng-model="profile.id" class="form-control" placeholder={{model.oldprofile.id}}>
+<input ng-model="profile.id" class="form-control" value={{model.oldprofile.id}}>
 
 <label>Email id</label>
-<input ng-model="profile.email" class="form-control" placeholder={{model.oldprofile.email}}>
+<!--  <input type="text" ng-model="profile.email" class="form-control" value={{model.oldprofile.email}}> -->
+<input type="text" ng-model="model.oldprofile.email" class="form-control" value={{model.oldprofile.email}}>
 
 
 <label>First Name</label>
-<input ng-model="profile.firstname" class="form-control" placeholder={{model.oldprofile.firstname}}>
-
+<!-- <input ng-model="profile.firstname" class="form-control" value={{model.oldprofile.firstname}}> -->
+<input ng-model="model.oldprofile.firstname" class="form-control" value={{model.oldprofile.firstname}}>
 
 <label>Last Name</label>
-<input ng-model="profile.lastname" class="form-control" placeholder={{model.oldprofile.lastname}}>
+<!--  <input ng-model="profile.lastname" class="form-control" value={{model.oldprofile.lastname}}> -->
+<input ng-model="model.oldprofile.lastname" class="form-control" value={{model.oldprofile.lastname}}>
 
 
 <label>Password</label>
-<input ng-model="profile.password" class="form-control" placeholder= {{model.oldprofile.password}}>
+<!-- <input ng-model="profile.password" class="form-control" value= {{model.oldprofile.password}}> -->
+<input ng-model="model.oldprofile.password" class="form-control" value= {{model.oldprofile.password}}>
 
 
 <label>Date Of Birth</label>
-<input ng-model="profile.dob" class="form-control" placeholder= {{model.oldprofile.dob}}>
+<!-- <input ng-model="profile.dob" class="form-control" value= {{model.oldprofile.dob}}> -->
+<input ng-model="model.oldprofile.dob" class="form-control" value= {{model.oldprofile.dob}}>
 
 
 <label>Gender</label>
-<input ng-model="profile.gender" class="form-control" placeholder= {{model.oldprofile.gender}}>
+<!-- <input ng-model="profile.gender" class="form-control" value= {{model.oldprofile.gender}}> -->
+<input ng-model="model.oldprofile.gender" class="form-control" value= {{model.oldprofile.gender}}>
 
 
 <label>Address</label>
-<textarea ng-model="profile.address" class="form-control" placeholder= {{model.oldprofile.address}}></textarea>
-
+<!-- <textarea ng-model="profile.address" class="form-control" value= {{model.oldprofile.address}}></textarea> -->
+<textarea ng-model="model.oldprofile.address" class="form-control" value= {{model.oldprofile.address}}></textarea>
 
 <label>Phone</label>
-<textarea ng-model="profile.phone" class="form-control" placeholder= {{model.oldprofile.phone}}></textarea>
+<!-- <textarea ng-model="profile.phone" class="form-control" value= {{model.oldprofile.phone}}></textarea> -->
+<textarea ng-model="model.oldprofile.phone" class="form-control" value= {{model.oldprofile.phone}}></textarea>
 
 <label>Occupation</label>
-<input ng-model="profile.occupation" class="form-control" placeholder= {{model.oldprofile.occupation}}>
+<!-- <input ng-model="profile.occupation" class="form-control" value= {{model.oldprofile.occupation}}> -->
+<input ng-model="model.oldprofile.occupation" class="form-control" value= {{model.oldprofile.occupation}}>
 
 <label>Experience</label>
-<textarea ng-model="profile.experience" class="form-control" placeholder= {{model.oldprofile.experience}}></textarea>
+<!-- <textarea ng-model="profile.experience" class="form-control" value= {{model.oldprofile.experience}}></textarea> -->
+<textarea ng-model="model.oldprofile.experience" class="form-control" value= {{model.oldprofile.experience}}></textarea>
 
 <label>Description</label>
-<input ng-model="profile.description" class="form-control" placeholder= {{model.oldprofile.description}}>
+<!-- <input ng-model="profile.description" class="form-control" value= {{model.oldprofile.description}}> -->
+<input ng-model="model.oldprofile.description" class="form-control" value= {{model.oldprofile.description}}>
 
 <button ng-click="model.updateProfile(profile)" class="btn btn-primary btn-block">Update</button>
 

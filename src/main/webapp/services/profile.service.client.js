@@ -27,6 +27,7 @@
             return $http.put("/userprofile/updateProfile/"+userId,profile);
         }
         function getProfile(userId){
+        	console.log("Inside GUI service :"+userId);
             return $http.get("/userprofile/getprofile/"+userId);
         }
         function getAllSkills() {
